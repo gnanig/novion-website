@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Novion Technologies — Trust, Reliability and Quality</title>
+  <meta name="description" content="Novion Technologies — Software Solutions, Testing Services, and Consulting from Bhubaneswar, Odisha." />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/logo-icon.png" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            blue: '#0A9FD8',
+          },
+          fontFamily: {
+            display: ['Syne', 'system-ui', 'sans-serif'],
+            body:    ['Inter', 'system-ui', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: #F5F5F5;
+      color: #0A1628;
+      overflow-x: hidden;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+    /* ── Navbar ── */
+    #navbar {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      z-index: 30;
+      padding: 22px 28px;
+      transition: all 0.3s ease;
+    }
+    #navbar.pinned {
+      position: fixed;
+      top: 14px; left: 20px; right: 20px;
+      padding: 14px 22px;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-radius: 16px;
+      border: 1px solid rgba(10,22,40,0.08);
+      box-shadow: 0 4px 30px rgba(10,22,40,0.1);
+    }
+    #navbar.pinned .nav-link   { color: rgba(10,22,40,0.55); }
+    #navbar.pinned .nav-link:hover { color: #0A1628; }
+    #navbar.pinned .nav-logo   { filter: none; }
+    #navbar.pinned .nav-cta    { background: #0A1628; color: #fff; }
+    #navbar.pinned .nav-cta:hover { background: #0F2040; }
+
+    .nav-link {
+      font-size: 0.9rem; font-weight: 500;
+      color: rgba(255,255,255,0.7);
+      text-decoration: none;
+      letter-spacing: 0.005em;
+      transition: color 0.2s;
+    }
+    .nav-link:hover { color: #fff; }
+    .nav-cta {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.25);
+      color: #fff;
+      font-size: 0.875rem; font-weight: 500;
+      padding: 10px 22px;
+      border-radius: 999px;
+      text-decoration: none;
+      backdrop-filter: blur(8px);
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .nav-cta:hover { background: rgba(255,255,255,0.25); }
+    .nav-logo { filter: brightness(0) invert(1); }
+
+    /* ── Hero card dot grid ── */
+    .hero-dot-grid {
+      background-image: radial-gradient(rgba(10,159,216,0.18) 1px, transparent 1px);
+      background-size: 34px 34px;
+    }
+
+    /* ── Eye animations ── */
+    @keyframes eyeBreathe {
+      0%,100%{ opacity:.65; transform:scale(1); }
+      50%    { opacity:1;   transform:scale(1.04); }
+    }
+    @keyframes ringPulse {
+      0%,100%{ opacity:.06; transform:scale(1); }
+      50%    { opacity:.22; transform:scale(1.09); }
+    }
+    @keyframes ringPulse2 {
+      0%,100%{ opacity:.1;  transform:scale(1); }
+      50%    { opacity:.28; transform:scale(1.06); }
+    }
+    .eye-body { animation: eyeBreathe 6s ease-in-out infinite; transform-origin:center; }
+    .eye-r1   { animation: ringPulse  5s ease-in-out infinite; transform-origin:center; }
+    .eye-r2   { animation: ringPulse2 7s ease-in-out 1.8s infinite; transform-origin:center; }
+
+    /* ── Hero text animations ── */
+    @keyframes fadeUp {
+      from { opacity:0; transform:translateY(24px); }
+      to   { opacity:1; transform:translateY(0); }
+    }
+    .ha1 { animation: fadeUp .7s ease .08s both; }
+    .ha2 { animation: fadeUp .7s ease .22s both; }
+    .ha3 { animation: fadeUp .65s ease .36s both; }
+    .ha4 { animation: fadeUp .65s ease .5s  both; }
+    .ha5 { animation: fadeUp .65s ease .62s both; }
+    .ha6 { animation: fadeUp .9s  ease .25s both; }
+
+    /* ── Scroll reveal ── */
+    [data-reveal] {
+      opacity: 0; transform: translateY(28px);
+      transition: opacity .65s ease, transform .65s ease;
+    }
+    [data-reveal].revealed { opacity:1; transform:translateY(0); }
+    [data-d1]{ transition-delay:.1s; }
+    [data-d2]{ transition-delay:.2s; }
+    [data-d3]{ transition-delay:.3s; }
+
+    /* ── Buttons ── */
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: #0A9FD8; color: #fff;
+      font-weight: 600; font-size: .9375rem;
+      padding: 13px 28px; border-radius: 999px; border: none;
+      text-decoration: none; cursor: pointer;
+      transition: background .2s, transform .18s, box-shadow .2s;
+    }
+    .btn-primary:hover { background: #0888bc; transform: translateY(-2px); box-shadow: 0 8px 28px rgba(10,159,216,.35); }
+
+    .btn-white {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: #fff; color: #0A1628;
+      font-weight: 600; font-size: .9375rem;
+      padding: 13px 20px 13px 28px; border-radius: 999px;
+      text-decoration: none; cursor: pointer;
+      transition: background .2s, transform .18s;
+    }
+    .btn-white:hover { background: #f0f0f0; transform: translateY(-2px); }
+    .btn-white-circle {
+      display: flex; align-items: center; justify-content: center;
+      width: 34px; height: 34px;
+      background: #0A1628; border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .btn-outline-light {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: transparent;
+      border: 1.5px solid rgba(255,255,255,0.25);
+      color: rgba(255,255,255,0.8);
+      font-weight: 500; font-size: .875rem;
+      padding: 10px 20px 10px 22px; border-radius: 999px;
+      text-decoration: none; cursor: pointer;
+      transition: border-color .2s, color .2s, background .2s;
+    }
+    .btn-outline-light:hover { border-color: rgba(255,255,255,.6); color: #fff; background: rgba(255,255,255,.07); }
+    .btn-outline-circle {
+      display: flex; align-items: center; justify-content: center;
+      width: 28px; height: 28px;
+      background: rgba(255,255,255,.15); border-radius: 50%; flex-shrink: 0;
+    }
+
+    /* ── Marquee ── */
+    @keyframes marquee { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+    .marquee-track {
+      display: flex; width: max-content;
+      animation: marquee 28s linear infinite;
+    }
+    .marquee-track:hover { animation-play-state: paused; }
+
+    /* ── Cards ── */
+    .card-dark  { background: #0F2040; border-radius: 22px; }
+    .card-light { background: #fff; border-radius: 22px; border: 1px solid rgba(10,22,40,.07); }
+    .card-blue  { background: #0A9FD8; border-radius: 22px; }
+
+    /* ── Service card hover ── */
+    .service-card { transition: transform .25s ease, box-shadow .25s ease; }
+    .service-card:hover { transform: translateY(-5px); box-shadow: 0 20px 60px rgba(10,22,40,.12); }
+
+    /* ── Section label ── */
+    .sec-label {
+      display: inline-block;
+      font-size: .7rem; font-weight: 600;
+      letter-spacing: .16em; text-transform: uppercase;
+      color: #0A9FD8; margin-bottom: .65rem;
+    }
+
+    /* ── Form ── */
+    .form-field {
+      width: 100%; padding: 14px 18px;
+      background: #fff; border: 1.5px solid rgba(10,22,40,.1);
+      border-radius: 12px; color: #0A1628;
+      font-family: 'Inter', sans-serif; font-size: .9375rem;
+      outline: none; transition: border-color .2s, box-shadow .2s;
+    }
+    .form-field:focus { border-color: #0A9FD8; box-shadow: 0 0 0 3px rgba(10,159,216,.12); }
+    .form-field::placeholder { color: #9AADBE; }
+    select.form-field option { background:#fff; }
+    textarea.form-field { resize: none; }
+
+    /* ── Mobile menu ── */
+    #mobile-menu { display: none; }
+    #mobile-menu.open { display: block; }
+
+    @keyframes bounce { 0%,100%{transform:translateY(0)}50%{transform:translateY(7px)} }
+    .bounce { animation: bounce 1.8s ease-in-out infinite; }
+  </style>
+</head>
+
+<body>
+
+<!-- ═══════════════════════════════════════════════════
+     FULL-HEIGHT WRAPPER  (navbar + hero card)
+═══════════════════════════════════════════════════ -->
+<div style="height:100vh; display:flex; flex-direction:column; overflow:hidden; position:relative;">
+
+  <!-- ── NAVBAR ── -->
+  <nav id="navbar" role="navigation" aria-label="Main navigation">
+    <div style="display:flex; align-items:center; justify-content:space-between; max-width:88rem; margin:0 auto;">
+
+      <!-- Logo -->
+      <a href="#home" aria-label="Novion Technologies home"
+         style="display:flex; align-items:center; text-decoration:none;">
+        <img src="assets/logo.png" alt="Novion Technologies"
+             class="nav-logo" style="height:36px; width:auto;"
+             onerror="this.outerHTML='<span style=&quot;font-family:Syne,sans-serif;font-weight:800;color:#fff;font-size:1.15rem;letter-spacing:-.02em;&quot;>Novion <span style=&quot;color:#0A9FD8;&quot;>Tech</span></span>'" />
+      </a>
+
+      <!-- Desktop links -->
+      <div style="display:none;" class="md:flex-shown" id="desktop-nav">
+        <div style="display:flex; align-items:center; gap:2rem;">
+          <a href="#services" class="nav-link">Services</a>
+          <a href="#features" class="nav-link">Why Us</a>
+          <a href="#about"    class="nav-link">About</a>
+          <a href="#contact"  class="nav-link">Contact</a>
+        </div>
+      </div>
+
+      <div style="display:flex; align-items:center; gap:12px;">
+        <a href="#contact" class="nav-cta" id="nav-cta-btn">Get Started &rarr;</a>
+        <!-- Hamburger -->
+        <button id="menu-toggle" style="display:none; padding:8px; background:none; border:none; cursor:pointer; color:#fff;" aria-expanded="false" aria-controls="mobile-menu" aria-label="Toggle menu" id="hamburger">
+          <svg id="icon-open"  width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="4" x2="20" y1="6"  y2="6"/><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+          <svg id="icon-close" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="display:none;"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile menu -->
+    <div id="mobile-menu" style="margin-top:12px; padding:12px; background:rgba(10,22,40,.95); border-radius:14px; display:none;">
+      <div style="display:flex; flex-direction:column; gap:4px;">
+        <a href="#services" class="mobile-link" style="display:block; padding:10px 16px; color:rgba(255,255,255,.7); text-decoration:none; border-radius:10px; font-size:.9rem; font-weight:500;">Services</a>
+        <a href="#features" class="mobile-link" style="display:block; padding:10px 16px; color:rgba(255,255,255,.7); text-decoration:none; border-radius:10px; font-size:.9rem; font-weight:500;">Why Us</a>
+        <a href="#about"    class="mobile-link" style="display:block; padding:10px 16px; color:rgba(255,255,255,.7); text-decoration:none; border-radius:10px; font-size:.9rem; font-weight:500;">About</a>
+        <a href="#contact"  class="mobile-link" style="display:block; padding:10px 16px; color:rgba(255,255,255,.7); text-decoration:none; border-radius:10px; font-size:.9rem; font-weight:500;">Contact</a>
+        <a href="#contact" style="display:block; margin-top:8px; padding:12px 20px; background:#0A9FD8; color:#fff; text-align:center; border-radius:12px; font-weight:600; font-size:.875rem; text-decoration:none;">Get Started</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ── HERO CARD ── -->
+  <div id="home" style="flex:1; padding:16px 20px 20px; display:flex; flex-direction:column;">
+    <div class="hero-dot-grid" style="flex:1; background-color:#0A1628; border-radius:28px; overflow:hidden; position:relative;">
+
+      <!-- Blue glow (right side) -->
+      <div style="position:absolute; top:-80px; right:-80px; width:600px; height:600px; background:radial-gradient(circle, rgba(10,159,216,.14) 0%, transparent 65%); pointer-events:none;" aria-hidden="true"></div>
+      <div style="position:absolute; bottom:0; left:0; width:400px; height:400px; background:radial-gradient(circle, rgba(10,159,216,.07) 0%, transparent 65%); pointer-events:none;" aria-hidden="true"></div>
+
+      <!-- Content grid -->
+      <div style="position:relative; z-index:10; display:grid; grid-template-columns:1fr 1fr; height:100%; padding:0 56px; align-items:center; gap:40px;">
+
+        <!-- Left: text -->
+        <div>
+          <!-- Badge -->
+          <div class="ha1" style="display:inline-flex; align-items:center; gap:10px; padding:8px 18px 8px 12px; border-radius:999px; border:1px solid rgba(255,255,255,.12); background:rgba(255,255,255,.07); margin-bottom:32px; backdrop-filter:blur(8px);">
+            <span style="width:7px; height:7px; border-radius:50%; background:#0A9FD8; flex-shrink:0;" aria-hidden="true"></span>
+            <span style="font-size:.8rem; font-weight:500; color:rgba(255,255,255,.65); letter-spacing:.04em;">Bhubaneswar, Odisha &nbsp;·&nbsp; Software &nbsp;·&nbsp; Testing &nbsp;·&nbsp; Consulting</span>
+          </div>
+
+          <!-- Headline -->
+          <h1 class="ha2" style="font-family:'Syne',sans-serif; font-weight:800; color:#fff; line-height:1.04; letter-spacing:-.04em; font-size:clamp(2.8rem,5.5vw,4.75rem); margin:0 0 18px;">
+            Engineering<br/>
+            <span style="color:#0A9FD8;">Trust.</span><br/>
+            Delivering<br/>Excellence.
+          </h1>
+
+          <!-- Tagline -->
+          <p class="ha3" style="font-size:.7rem; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:rgba(255,255,255,.38); margin:0 0 22px;">
+            Trust &nbsp;·&nbsp; Reliability &nbsp;·&nbsp; Quality
+          </p>
+
+          <!-- Description -->
+          <p class="ha4" style="font-size:1.0625rem; color:rgba(255,255,255,.6); line-height:1.65; max-width:420px; margin:0 0 40px;">
+            Your technology partner for precision software development, comprehensive testing, and strategic consulting — built on a foundation of trust.
+          </p>
+
+          <!-- CTAs -->
+          <div class="ha5" style="display:flex; flex-wrap:wrap; gap:14px; align-items:center;">
+            <a href="#services" class="btn-white">
+              Explore Services
+              <span class="btn-white-circle" aria-hidden="true">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+              </span>
+            </a>
+            <a href="#contact" class="btn-outline-light">
+              Talk to Us
+              <span class="btn-outline-circle" aria-hidden="true">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.8)" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+              </span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Right: Eye motif -->
+        <div class="ha6" style="display:flex; justify-content:flex-end; align-items:center;" aria-hidden="true">
+          <div style="position:relative; width:min(420px, 45vw);">
+            <!-- Glow wash -->
+            <div style="position:absolute; inset:0; border-radius:50%; background:radial-gradient(circle, rgba(10,159,216,.1) 0%, transparent 65%); transform:scale(1.3);"></div>
+
+            <svg viewBox="0 0 420 420" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%; height:auto; position:relative;">
+              <circle cx="210" cy="210" r="196" stroke="#0A9FD8" stroke-width="0.5" class="eye-r2"/>
+              <circle cx="210" cy="210" r="170" stroke="#0A9FD8" stroke-width="0.8" class="eye-r1"/>
+
+              <path d="M35,210 C105,80 315,80 385,210 C315,340 105,340 35,210 Z"
+                    stroke="#0A9FD8" stroke-width="1.8"
+                    fill="rgba(10,159,216,0.04)" opacity="0.75" class="eye-body"/>
+
+              <circle cx="210" cy="210" r="74" stroke="#0A9FD8" stroke-width="1.6"
+                      fill="rgba(10,159,216,0.06)" opacity="0.9" class="eye-body"/>
+              <circle cx="210" cy="210" r="52" stroke="#0A9FD8" stroke-width="0.9"
+                      fill="none" opacity="0.45"/>
+              <circle cx="210" cy="210" r="74" fill="rgba(10,159,216,0.07)"/>
+
+              <circle cx="210" cy="210" r="28" fill="#0A9FD8" opacity="0.92" class="eye-body"/>
+              <circle cx="210" cy="210" r="16" fill="#0A1628"/>
+              <circle cx="210" cy="210" r="9"  fill="#0A9FD8" opacity="0.6"/>
+
+              <circle cx="222" cy="198" r="7"   fill="white" opacity="0.35"/>
+              <circle cx="215" cy="226" r="3.5" fill="white" opacity="0.1"/>
+
+              <circle cx="35"  cy="210" r="4.5" fill="#0A9FD8" opacity="0.8"/>
+              <circle cx="385" cy="210" r="4.5" fill="#0A9FD8" opacity="0.8"/>
+
+              <line x1="210" y1="136" x2="210" y2="145" stroke="#0A9FD8" stroke-width="1.4" opacity="0.4"/>
+              <line x1="210" y1="275" x2="210" y2="284" stroke="#0A9FD8" stroke-width="1.4" opacity="0.4"/>
+              <line x1="136" y1="210" x2="145" y2="210" stroke="#0A9FD8" stroke-width="1.4" opacity="0.4"/>
+              <line x1="275" y1="210" x2="284" y2="210" stroke="#0A9FD8" stroke-width="1.4" opacity="0.4"/>
+            </svg>
+
+            <!-- Est. chip -->
+            <div style="position:absolute; bottom:-8px; left:50%; transform:translateX(-50%); white-space:nowrap; padding:6px 18px; border-radius:999px; border:1px solid rgba(255,255,255,.1); background:rgba(255,255,255,.06); backdrop-filter:blur(8px);">
+              <span style="font-size:10px; font-weight:500; letter-spacing:.2em; text-transform:uppercase; color:rgba(255,255,255,.4);">Est. Bhubaneswar, Odisha</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Bottom: trust marquee strip -->
+      <div style="position:absolute; bottom:0; left:0; right:0; border-top:1px solid rgba(255,255,255,.07); padding:18px 0; overflow:hidden;" aria-label="Our values">
+        <div class="marquee-track">
+          <!-- render twice for seamless loop -->
+          <span style="display:flex; gap:0; align-items:center;">
+            <span style="padding:0 48px; color:rgba(255,255,255,.3); font-size:.82rem; font-weight:500; letter-spacing:.12em; text-transform:uppercase; white-space:nowrap;">Trusted Quality</span>
+            <span style="color:rgba(10,159,216,.4); font-size:.7rem;">◆</span>
+            <span style="padding:0 48px; color:rgba(255,255,255,.3); font-size:.82rem; font-weight:500; letter-spacing:.12em; text-transform:uppercase; white-space:nowrap;">Precision Engineering</span>
+            <span style="color:rgba(10,159,216,.4); font-size:.7rem;">◆</span>
+            <span style="padding:0 48px; color:rgba(255,255,255,.3); font-size:.82rem; font-weight:500; letter-spacing:.12em; text-transform:uppercase; white-space:nowrap;">End-to-End Testing</span>
+            <span style="color:rgba(10,159,216,.4); font-size:.7rem;">◆</span>
+            <span style="padding:0 48px; color:rgba(255,255,255,.3); font-size:.82rem; font-weight:500; letter-spacing:.12em; text-transform:uppercase; white-space:nowrap;">Strategic Consulting</span>
+            <span style="color:rgba(10,159,216,.4); font-size:.7rem;">◆</span>
+            <span style="padding:0 48px; color:rgba(255,255,255,.3); font-size:.82rem; font-weight:500; letter-spacing:.12em; text-transform:uppercase; white-space:nowrap;">Reliable Delivery</span>
+            <span style="color:rgba(10,159,216,.4); font-size:.7rem;">◆</span>
+            <span style="padding:0 48px; color:rgba(255,255,255,.3); font-size:.82rem; font-weight:500; letter-spacing:.12em; text-transform:uppercase; white-space:nowrap;">Bhubaneswar, Odisha</span>
+            <span style="color:rgba(10,159,216,.4); font-size:.7rem;">◆</span>
+          </span>
+          <!-- duplicate -->
+          <span style="display:flex; gap:0; align-items:center;" aria-hidden="true">
+            <span style="padding:0 48px; color:rgba(255,255,255,.3); font-size:.82rem; font-weight:500; letter-spacing:.12em; text-transform:uppercase; white-space:nowrap;">Trusted Quality</span>
+            <span style="color:rgba(10,159,216,.4); font-size:.7rem;">◆</span>
+            <span style="padding:0 48px; color:rgba(255,255,255,.3); font-size:.82rem; font-weight:500; letter-spacing:.12em; text-transform:uppercase; white-space:nowrap;">Precision Engineering</span>
+            <span style="color:rgba(10,159,216,.4); font-size:.7rem;">◆</span>
+            <span style="padding:0 48px; color:rgba(255,255,255,.3); font-size:.82rem; font-weight:500; letter-spacing:.12em; text-transform:uppercase; white-space:nowrap;">End-to-End Testing</span>
+            <span style="color:rgba(10,159,216,.4); font-size:.7rem;">◆</span>
+            <span style="padding:0 48px; color:rgba(255,255,255,.3); font-size:.82rem; font-weight:500; letter-spacing:.12em; text-transform:uppercase; white-space:nowrap;">Strategic Consulting</span>
+            <span style="color:rgba(10,159,216,.4); font-size:.7rem;">◆</span>
+            <span style="padding:0 48px; color:rgba(255,255,255,.3); font-size:.82rem; font-weight:500; letter-spacing:.12em; text-transform:uppercase; white-space:nowrap;">Reliable Delivery</span>
+            <span style="color:rgba(10,159,216,.4); font-size:.7rem;">◆</span>
+            <span style="padding:0 48px; color:rgba(255,255,255,.3); font-size:.82rem; font-weight:500; letter-spacing:.12em; text-transform:uppercase; white-space:nowrap;">Bhubaneswar, Odisha</span>
+            <span style="color:rgba(10,159,216,.4); font-size:.7rem;">◆</span>
+          </span>
+        </div>
+      </div>
+
+    </div><!-- /hero card -->
+  </div>
+
+</div><!-- /h-screen wrapper -->
+
+
+<!-- ═══════════════════════════════════════════════════
+     SERVICES SECTION  (mixed dark/light cards)
+═══════════════════════════════════════════════════ -->
+<section id="services" style="background:#F5F5F5; padding:80px 20px 0;">
+  <div style="max-width:88rem; margin:0 auto;">
+
+    <!-- Header row -->
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:48px; margin-bottom:40px; align-items:end;" data-reveal>
+      <div>
+        <span class="sec-label">What We Do</span>
+        <h2 style="font-family:'Syne',sans-serif; font-weight:800; font-size:clamp(2.2rem,4vw,3.25rem); letter-spacing:-.04em; line-height:1.06; color:#0A1628; margin:0;">
+          End-to-End<br/>Technology Services.
+        </h2>
+      </div>
+      <div style="display:flex; align-items:flex-end;">
+        <p style="font-size:1.0625rem; color:rgba(10,22,40,.55); line-height:1.65; max-width:400px; margin:0;">
+          From building to testing to strategy — we cover every layer of your technology journey with the same commitment to quality.
+        </p>
+      </div>
+    </div>
+
+    <!-- 3-col card grid (1 wide + 2 tall stacked) -->
+    <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:14px;">
+
+      <!-- Card 1: Software Solutions — light, spans full height, left -->
+      <div class="card-light service-card" style="grid-column:span 2; padding:44px 44px 36px; min-height:420px; display:flex; flex-direction:column; justify-content:space-between;" data-reveal>
+        <div>
+          <div style="width:52px; height:52px; border-radius:16px; background:rgba(10,159,216,.1); display:flex; align-items:center; justify-content:center; margin-bottom:28px;" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0A9FD8" stroke-width="1.8" stroke-linecap="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+          </div>
+          <h3 style="font-family:'Syne',sans-serif; font-weight:700; font-size:1.9rem; letter-spacing:-.03em; color:#0A1628; line-height:1.15; margin:0 0 16px;">Software Solutions</h3>
+          <p style="font-size:.975rem; color:rgba(10,22,40,.55); line-height:1.65; max-width:460px; margin:0;">
+            From concept to deployment, we engineer robust, scalable software tailored to your business. Web platforms, enterprise applications, and custom digital tools — built to last and perform under pressure.
+          </p>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-top:40px;">
+          <div style="display:flex; flex-wrap:wrap; gap:8px;">
+            <span style="padding:5px 14px; border-radius:999px; border:1px solid rgba(10,22,40,.1); font-size:.75rem; font-weight:500; color:rgba(10,22,40,.5);">Web Apps</span>
+            <span style="padding:5px 14px; border-radius:999px; border:1px solid rgba(10,22,40,.1); font-size:.75rem; font-weight:500; color:rgba(10,22,40,.5);">Enterprise</span>
+            <span style="padding:5px 14px; border-radius:999px; border:1px solid rgba(10,22,40,.1); font-size:.75rem; font-weight:500; color:rgba(10,22,40,.5);">Custom Tools</span>
+            <span style="padding:5px 14px; border-radius:999px; border:1px solid rgba(10,22,40,.1); font-size:.75rem; font-weight:500; color:rgba(10,22,40,.5);">APIs</span>
+          </div>
+          <div style="width:44px; height:44px; border-radius:50%; background:#0A1628; display:flex; align-items:center; justify-content:center; flex-shrink:0; cursor:pointer;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2: Testing — dark, right-top -->
+      <div class="card-dark service-card" style="padding:36px; display:flex; flex-direction:column; justify-content:space-between; min-height:200px;" data-reveal data-d1>
+        <div>
+          <div style="width:44px; height:44px; border-radius:14px; background:rgba(10,159,216,.15); display:flex; align-items:center; justify-content:center; margin-bottom:22px;" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0A9FD8" stroke-width="1.8" stroke-linecap="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><path d="m9 15 2 2 4-4"/></svg>
+          </div>
+          <h3 style="font-family:'Syne',sans-serif; font-weight:700; font-size:1.4rem; letter-spacing:-.03em; color:#fff; line-height:1.2; margin:0 0 12px;">Testing<br/>Services</h3>
+          <p style="font-size:.875rem; color:rgba(255,255,255,.45); line-height:1.6; margin:0;">Eliminate defects before they reach your users with manual, automated, and performance QA.</p>
+        </div>
+        <div style="display:flex; gap:6px; margin-top:24px; flex-wrap:wrap;">
+          <span style="padding:4px 12px; border-radius:999px; border:1px solid rgba(255,255,255,.12); font-size:.7rem; font-weight:500; color:rgba(255,255,255,.4);">Manual</span>
+          <span style="padding:4px 12px; border-radius:999px; border:1px solid rgba(255,255,255,.12); font-size:.7rem; font-weight:500; color:rgba(255,255,255,.4);">Automation</span>
+          <span style="padding:4px 12px; border-radius:999px; border:1px solid rgba(255,255,255,.12); font-size:.7rem; font-weight:500; color:rgba(255,255,255,.4);">Performance</span>
+        </div>
+      </div>
+
+      <!-- Card 3: Consulting — dark, right-bottom -->
+      <div class="card-dark service-card" style="grid-column:3; grid-row:2; padding:36px; display:flex; flex-direction:column; justify-content:space-between; min-height:200px;" data-reveal data-d2>
+        <div>
+          <div style="width:44px; height:44px; border-radius:14px; background:rgba(10,159,216,.15); display:flex; align-items:center; justify-content:center; margin-bottom:22px;" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0A9FD8" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>
+          </div>
+          <h3 style="font-family:'Syne',sans-serif; font-weight:700; font-size:1.4rem; letter-spacing:-.03em; color:#fff; line-height:1.2; margin:0 0 12px;">Technology<br/>Consulting</h3>
+          <p style="font-size:.875rem; color:rgba(255,255,255,.45); line-height:1.6; margin:0;">Strategic guidance on digital transformation, architecture, and long-term technology roadmaps.</p>
+        </div>
+        <div style="display:flex; gap:6px; margin-top:24px; flex-wrap:wrap;">
+          <span style="padding:4px 12px; border-radius:999px; border:1px solid rgba(255,255,255,.12); font-size:.7rem; font-weight:500; color:rgba(255,255,255,.4);">Strategy</span>
+          <span style="padding:4px 12px; border-radius:999px; border:1px solid rgba(255,255,255,.12); font-size:.7rem; font-weight:500; color:rgba(255,255,255,.4);">Architecture</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════
+     FEATURES / WHY NOVION
+═══════════════════════════════════════════════════ -->
+<section id="features" style="background:#F5F5F5; padding:80px 20px 0;">
+  <div style="max-width:88rem; margin:0 auto;">
+
+    <!-- Header -->
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:48px; margin-bottom:40px; align-items:end;" data-reveal>
+      <div>
+        <span class="sec-label">The Novion Advantage</span>
+        <h2 style="font-family:'Syne',sans-serif; font-weight:800; font-size:clamp(2.2rem,4vw,3.25rem); letter-spacing:-.04em; line-height:1.06; color:#0A1628; margin:0;">
+          What You Gain<br/>with Us.
+        </h2>
+      </div>
+      <div style="display:flex; align-items:flex-end;">
+        <p style="font-size:1.0625rem; color:rgba(10,22,40,.55); line-height:1.65; max-width:380px; margin:0;">
+          Beyond delivering a project — we deliver a standard that holds through every phase of your engagement.
+        </p>
+      </div>
+    </div>
+
+    <!-- 6-feature grid -->
+    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:14px;">
+
+      <div class="card-light" style="padding:32px;" data-reveal>
+        <div style="width:40px; height:40px; border-radius:12px; background:rgba(10,159,216,.08); display:flex; align-items:center; justify-content:center; margin-bottom:18px;" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0A9FD8" stroke-width="2" stroke-linecap="round"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg>
+        </div>
+        <h3 style="font-family:'Syne',sans-serif; font-weight:700; font-size:1.05rem; letter-spacing:-.02em; color:#0A1628; margin:0 0 10px;">Proven Expertise</h3>
+        <p style="font-size:.875rem; color:rgba(10,22,40,.5); line-height:1.6; margin:0;">Hands-on experience delivering complex solutions. Depth from day one.</p>
+      </div>
+
+      <div class="card-light" style="padding:32px;" data-reveal data-d1>
+        <div style="width:40px; height:40px; border-radius:12px; background:rgba(10,159,216,.08); display:flex; align-items:center; justify-content:center; margin-bottom:18px;" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0A9FD8" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h3 style="font-family:'Syne',sans-serif; font-weight:700; font-size:1.05rem; letter-spacing:-.02em; color:#0A1628; margin:0 0 10px;">Quality-First Culture</h3>
+        <p style="font-size:.875rem; color:rgba(10,22,40,.5); line-height:1.6; margin:0;">Every line of code and every recommendation meets our rigorous standards.</p>
+      </div>
+
+      <div class="card-light" style="padding:32px;" data-reveal data-d2>
+        <div style="width:40px; height:40px; border-radius:12px; background:rgba(10,159,216,.08); display:flex; align-items:center; justify-content:center; margin-bottom:18px;" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0A9FD8" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <h3 style="font-family:'Syne',sans-serif; font-weight:700; font-size:1.05rem; letter-spacing:-.02em; color:#0A1628; margin:0 0 10px;">Reliable Delivery</h3>
+        <p style="font-size:.875rem; color:rgba(10,22,40,.5); line-height:1.6; margin:0;">We treat your deadlines as our own. Consistent, on-time, every time.</p>
+      </div>
+
+      <div class="card-light" style="padding:32px;" data-reveal>
+        <div style="width:40px; height:40px; border-radius:12px; background:rgba(10,159,216,.08); display:flex; align-items:center; justify-content:center; margin-bottom:18px;" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0A9FD8" stroke-width="2" stroke-linecap="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </div>
+        <h3 style="font-family:'Syne',sans-serif; font-weight:700; font-size:1.05rem; letter-spacing:-.02em; color:#0A1628; margin:0 0 10px;">Ongoing Support</h3>
+        <p style="font-size:.875rem; color:rgba(10,22,40,.5); line-height:1.6; margin:0;">Partnership beyond launch. With you through every update and iteration.</p>
+      </div>
+
+      <div class="card-light" style="padding:32px;" data-reveal data-d1>
+        <div style="width:40px; height:40px; border-radius:12px; background:rgba(10,159,216,.08); display:flex; align-items:center; justify-content:center; margin-bottom:18px;" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0A9FD8" stroke-width="2" stroke-linecap="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        </div>
+        <h3 style="font-family:'Syne',sans-serif; font-weight:700; font-size:1.05rem; letter-spacing:-.02em; color:#0A1628; margin:0 0 10px;">Scalable Architecture</h3>
+        <p style="font-size:.875rem; color:rgba(10,22,40,.5); line-height:1.6; margin:0;">From startup MVP to enterprise-grade — built to grow without a rebuild.</p>
+      </div>
+
+      <div class="card-light" style="padding:32px;" data-reveal data-d2>
+        <div style="width:40px; height:40px; border-radius:12px; background:rgba(10,159,216,.08); display:flex; align-items:center; justify-content:center; margin-bottom:18px;" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0A9FD8" stroke-width="2" stroke-linecap="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+        </div>
+        <h3 style="font-family:'Syne',sans-serif; font-weight:700; font-size:1.05rem; letter-spacing:-.02em; color:#0A1628; margin:0 0 10px;">Full Transparency</h3>
+        <p style="font-size:.875rem; color:rgba(10,22,40,.5); line-height:1.6; margin:0;">Clear processes, regular updates. You are always in control.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════
+     ABOUT SECTION  (large dark card — like use-cases)
+═══════════════════════════════════════════════════ -->
+<section id="about" style="background:#F5F5F5; padding:80px 20px 0;">
+  <div style="max-width:88rem; margin:0 auto;">
+
+    <div class="card-dark" style="display:grid; grid-template-columns:1fr 1fr; min-height:500px; overflow:hidden; position:relative;" data-reveal>
+
+      <!-- Blue glow inside dark card -->
+      <div style="position:absolute; top:-100px; right:-100px; width:500px; height:500px; background:radial-gradient(circle, rgba(10,159,216,.12) 0%, transparent 65%); pointer-events:none;" aria-hidden="true"></div>
+
+      <!-- Left: text -->
+      <div style="padding:56px 48px 56px 56px; display:flex; flex-direction:column; justify-content:space-between; position:relative; z-index:2;">
+        <div>
+          <span class="sec-label" style="color:#0A9FD8;">Our Story</span>
+          <h2 style="font-family:'Syne',sans-serif; font-weight:800; font-size:clamp(2rem,3.5vw,3rem); letter-spacing:-.04em; color:#fff; line-height:1.1; margin:0 0 24px;">
+            Rooted in<br/>Bhubaneswar.<br/>
+            <span style="color:#0A9FD8;">Built for Impact.</span>
+          </h2>
+          <div style="display:flex; flex-direction:column; gap:18px;">
+            <p style="font-size:.975rem; color:rgba(255,255,255,.5); line-height:1.7; margin:0;">
+              Novion Technologies was founded on a singular belief: great technology is built on trust. From the heart of Odisha's IT landscape, we deliver precision-engineered solutions for businesses and individuals alike.
+            </p>
+            <p style="font-size:.975rem; color:rgba(255,255,255,.5); line-height:1.7; margin:0;">
+              Our tagline — <em style="color:rgba(255,255,255,.8); font-style:normal; font-weight:500;">"Trust, Reliability and Quality"</em> — is not marketing. It is our operating standard, applied to every line of code and every client engagement.
+            </p>
+          </div>
+        </div>
+        <div style="margin-top:40px;">
+          <a href="#contact" class="btn-white" style="display:inline-flex;">
+            Work With Us
+            <span class="btn-white-circle" aria-hidden="true">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Right: stat cards + eye -->
+      <div style="padding:48px 48px 48px 24px; display:flex; flex-direction:column; gap:14px; position:relative; z-index:2;" aria-hidden="true">
+
+        <div style="background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.08); border-radius:18px; padding:28px 32px;">
+          <p style="font-size:.65rem; font-weight:600; letter-spacing:.16em; text-transform:uppercase; color:#0A9FD8; margin:0 0 10px;">Our Mission</p>
+          <p style="font-size:1.05rem; color:#fff; font-weight:500; line-height:1.55; margin:0; letter-spacing:-.01em;">To empower businesses through unwavering trust, consistent reliability, and uncompromising quality.</p>
+        </div>
+
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px;">
+          <div style="background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.08); border-radius:18px; padding:24px; text-align:center;">
+            <p style="font-family:'Syne',sans-serif; font-weight:800; font-size:2.2rem; color:#fff; letter-spacing:-.04em; margin:0 0 4px;">B'<span style="color:#0A9FD8;">bsr</span></p>
+            <p style="font-size:.75rem; color:rgba(255,255,255,.35); margin:0;">Based in Odisha</p>
+          </div>
+          <div style="background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.08); border-radius:18px; padding:24px; text-align:center;">
+            <p style="font-family:'Syne',sans-serif; font-weight:800; font-size:2.2rem; color:#fff; letter-spacing:-.04em; margin:0 0 4px;">3<span style="color:#0A9FD8;">+</span></p>
+            <p style="font-size:.75rem; color:rgba(255,255,255,.35); margin:0;">Core Services</p>
+          </div>
+        </div>
+
+        <div style="background:rgba(10,159,216,.08); border:1px solid rgba(10,159,216,.2); border-radius:18px; padding:24px 28px; display:flex; align-items:center; gap:16px;">
+          <div style="width:40px; height:40px; border-radius:12px; background:rgba(10,159,216,.2); display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0A9FD8" stroke-width="2" stroke-linecap="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <div>
+            <p style="font-size:.9rem; font-weight:600; color:#fff; margin:0 0 3px;">Businesses &amp; Individuals</p>
+            <p style="font-size:.8rem; color:rgba(255,255,255,.4); margin:0;">Same quality, every engagement, every time.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════
+     STATS STRIP
+═══════════════════════════════════════════════════ -->
+<div style="background:#F5F5F5; padding:72px 20px 0;">
+  <div style="max-width:88rem; margin:0 auto; display:grid; grid-template-columns:repeat(4,1fr); gap:14px;">
+
+    <div class="card-light" style="padding:32px; text-align:center;" data-reveal>
+      <p style="font-family:'Syne',sans-serif; font-weight:800; font-size:3rem; color:#0A1628; letter-spacing:-.04em; line-height:1; margin:0 0 8px;">100<span style="color:#0A9FD8;">%</span></p>
+      <p style="font-size:.82rem; color:rgba(10,22,40,.45); font-weight:500; letter-spacing:.04em; text-transform:uppercase; margin:0;">Client Confidentiality</p>
+    </div>
+
+    <div class="card-light" style="padding:32px; text-align:center;" data-reveal data-d1>
+      <p style="font-family:'Syne',sans-serif; font-weight:800; font-size:3rem; color:#0A1628; letter-spacing:-.04em; line-height:1; margin:0 0 8px;">24<span style="color:#0A9FD8; font-size:2rem;">/7</span></p>
+      <p style="font-size:.82rem; color:rgba(10,22,40,.45); font-weight:500; letter-spacing:.04em; text-transform:uppercase; margin:0;">Support Available</p>
+    </div>
+
+    <div class="card-dark" style="padding:32px; text-align:center;" data-reveal data-d2>
+      <p style="font-family:'Syne',sans-serif; font-weight:800; font-size:2.75rem; color:#fff; letter-spacing:-.04em; line-height:1; margin:0 0 8px;">Zero<span style="color:#0A9FD8;">.</span></p>
+      <p style="font-size:.82rem; color:rgba(255,255,255,.35); font-weight:500; letter-spacing:.04em; text-transform:uppercase; margin:0;">Compromise on Quality</p>
+    </div>
+
+    <div class="card-dark" style="padding:32px; text-align:center;" data-reveal data-d3>
+      <p style="font-family:'Syne',sans-serif; font-weight:800; font-size:3rem; color:#fff; letter-spacing:-.04em; line-height:1; margin:0 0 8px;">360<span style="color:#0A9FD8;">°</span></p>
+      <p style="font-size:.82rem; color:rgba(255,255,255,.35); font-weight:500; letter-spacing:.04em; text-transform:uppercase; margin:0;">Service Coverage</p>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════
+     CONTACT
+═══════════════════════════════════════════════════ -->
+<section id="contact" style="background:#F5F5F5; padding:80px 20px;">
+  <div style="max-width:88rem; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:48px;">
+
+    <!-- Left: heading -->
+    <div data-reveal>
+      <span class="sec-label">Get In Touch</span>
+      <h2 style="font-family:'Syne',sans-serif; font-weight:800; font-size:clamp(2.2rem,4vw,3.25rem); letter-spacing:-.04em; line-height:1.06; color:#0A1628; margin:0 0 20px;">
+        Start Your<br/>Next Project.
+      </h2>
+      <p style="font-size:1.0625rem; color:rgba(10,22,40,.5); line-height:1.65; max-width:380px; margin:0 0 40px;">
+        Have a project in mind? Fill in the form and we will get back to you within 24 hours.
+      </p>
+
+      <!-- Contact info cards -->
+      <div style="display:flex; flex-direction:column; gap:12px;">
+        <div class="card-light" style="padding:20px 24px; display:flex; align-items:center; gap:16px;">
+          <div style="width:38px; height:38px; border-radius:10px; background:rgba(10,159,216,.08); display:flex; align-items:center; justify-content:center; flex-shrink:0;" aria-hidden="true">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#0A9FD8" stroke-width="2" stroke-linecap="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div>
+            <p style="font-size:.78rem; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:rgba(10,22,40,.35); margin:0 0 3px;">Location</p>
+            <p style="font-size:.9rem; font-weight:500; color:#0A1628; margin:0;">Bhubaneswar, Odisha, India</p>
+          </div>
+        </div>
+
+        <div class="card-light" style="padding:20px 24px; display:flex; align-items:center; gap:16px;">
+          <div style="width:38px; height:38px; border-radius:10px; background:rgba(10,159,216,.08); display:flex; align-items:center; justify-content:center; flex-shrink:0;" aria-hidden="true">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#0A9FD8" stroke-width="2" stroke-linecap="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          </div>
+          <div>
+            <p style="font-size:.78rem; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:rgba(10,22,40,.35); margin:0 0 3px;">Email</p>
+            <!-- Update this email address -->
+            <a href="mailto:info@noviontechnologies.com" style="font-size:.9rem; font-weight:500; color:#0A9FD8; text-decoration:none;">info@noviontechnologies.com</a>
+          </div>
+        </div>
+
+        <div class="card-dark" style="padding:20px 24px; display:flex; align-items:center; gap:16px;">
+          <div style="width:38px; height:38px; border-radius:10px; background:rgba(10,159,216,.15); display:flex; align-items:center; justify-content:center; flex-shrink:0;" aria-hidden="true">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#0A9FD8" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <div>
+            <p style="font-size:.78rem; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:rgba(255,255,255,.3); margin:0 0 3px;">Response Time</p>
+            <p style="font-size:.9rem; font-weight:500; color:#fff; margin:0;">Within <span style="color:#0A9FD8;">24 hours</span> on business days</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right: form -->
+    <div data-reveal data-d2>
+      <div class="card-light" style="padding:40px;">
+        <!--
+          To receive real emails: sign up at formspree.io (free),
+          create a form, replace YOUR_FORM_ID in the action below.
+        -->
+        <form id="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" style="display:flex; flex-direction:column; gap:18px;" novalidate>
+
+          <div>
+            <label for="name" style="display:block; font-size:.82rem; font-weight:600; color:#0A1628; margin-bottom:6px; letter-spacing:.02em;">Full Name</label>
+            <input type="text" id="name" name="name" required class="form-field" placeholder="Your full name" autocomplete="name" />
+          </div>
+
+          <div>
+            <label for="email" style="display:block; font-size:.82rem; font-weight:600; color:#0A1628; margin-bottom:6px; letter-spacing:.02em;">Email Address</label>
+            <input type="email" id="email" name="email" required class="form-field" placeholder="your@email.com" autocomplete="email" />
+          </div>
+
+          <div>
+            <label for="service" style="display:block; font-size:.82rem; font-weight:600; color:#0A1628; margin-bottom:6px; letter-spacing:.02em;">Service Interested In</label>
+            <select id="service" name="service" class="form-field">
+              <option value="">Select a service…</option>
+              <option value="software">Software Solutions</option>
+              <option value="testing">Testing Services</option>
+              <option value="consulting">Consulting</option>
+              <option value="other">Other / Not Sure</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="message" style="display:block; font-size:.82rem; font-weight:600; color:#0A1628; margin-bottom:6px; letter-spacing:.02em;">Message</label>
+            <textarea id="message" name="message" required rows="4" class="form-field" placeholder="Tell us about your project or inquiry…"></textarea>
+          </div>
+
+          <button type="submit" style="display:flex; align-items:center; justify-content:center; gap:8px; width:100%; padding:15px 28px; background:#0A1628; color:#fff; border:none; border-radius:12px; font-family:'Inter',sans-serif; font-weight:600; font-size:.9375rem; cursor:pointer; transition:background .2s, transform .18s;" onmouseover="this.style.background='#0F2040'" onmouseout="this.style.background='#0A1628'">
+            Send Message
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="m22 2-7 20-4-9-9-4 20-7z"/></svg>
+          </button>
+
+        </form>
+
+        <!-- Success -->
+        <div id="form-success" style="display:none; text-align:center; padding:48px 0;">
+          <div style="width:60px; height:60px; border-radius:50%; background:rgba(10,159,216,.1); display:flex; align-items:center; justify-content:center; margin:0 auto 20px;">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0A9FD8" stroke-width="2" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg>
+          </div>
+          <h3 style="font-family:'Syne',sans-serif; font-weight:700; font-size:1.5rem; color:#0A1628; margin:0 0 8px; letter-spacing:-.02em;">Message Sent!</h3>
+          <p style="color:rgba(10,22,40,.5); font-size:.9rem; margin:0;">We will get back to you within 24 hours.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════
+     FOOTER
+═══════════════════════════════════════════════════ -->
+<footer style="background:#0A1628; padding:56px 20px 32px; margin-top:80px;">
+  <div style="max-width:88rem; margin:0 auto;">
+    <div style="display:grid; grid-template-columns:2fr 1fr 1fr; gap:48px; margin-bottom:48px;">
+
+      <div>
+        <img src="assets/logo.png" alt="Novion Technologies"
+             style="height:32px; width:auto; filter:brightness(0) invert(1); margin-bottom:18px; display:block;"
+             onerror="this.outerHTML='<span style=&quot;font-family:Syne,sans-serif;font-weight:800;color:#fff;font-size:1.1rem;letter-spacing:-.02em;display:block;margin-bottom:18px;&quot;>Novion <span style=&quot;color:#0A9FD8;&quot;>Technologies</span></span>'" />
+        <p style="font-size:.875rem; color:rgba(255,255,255,.38); line-height:1.7; max-width:280px; margin:0 0 16px;">
+          Engineering Trust. Delivering Excellence. Your technology partner in Bhubaneswar, Odisha.
+        </p>
+        <p style="font-size:.75rem; font-style:italic; color:rgba(255,255,255,.2); margin:0;">Trust · Reliability · Quality</p>
+      </div>
+
+      <div>
+        <p style="font-size:.75rem; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:rgba(255,255,255,.35); margin:0 0 18px;">Navigation</p>
+        <div style="display:flex; flex-direction:column; gap:12px;">
+          <a href="#home"     style="font-size:.875rem; color:rgba(255,255,255,.45); text-decoration:none; transition:color .2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,.45)'">Home</a>
+          <a href="#services" style="font-size:.875rem; color:rgba(255,255,255,.45); text-decoration:none; transition:color .2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,.45)'">Services</a>
+          <a href="#features" style="font-size:.875rem; color:rgba(255,255,255,.45); text-decoration:none; transition:color .2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,.45)'">Why Us</a>
+          <a href="#about"    style="font-size:.875rem; color:rgba(255,255,255,.45); text-decoration:none; transition:color .2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,.45)'">About</a>
+          <a href="#contact"  style="font-size:.875rem; color:rgba(255,255,255,.45); text-decoration:none; transition:color .2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,.45)'">Contact</a>
+        </div>
+      </div>
+
+      <div>
+        <p style="font-size:.75rem; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:rgba(255,255,255,.35); margin:0 0 18px;">Services</p>
+        <div style="display:flex; flex-direction:column; gap:12px;">
+          <a href="#services" style="font-size:.875rem; color:rgba(255,255,255,.45); text-decoration:none;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,.45)'">Software Solutions</a>
+          <a href="#services" style="font-size:.875rem; color:rgba(255,255,255,.45); text-decoration:none;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,.45)'">Testing Services</a>
+          <a href="#services" style="font-size:.875rem; color:rgba(255,255,255,.45); text-decoration:none;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,.45)'">Consulting</a>
+        </div>
+      </div>
+
+    </div>
+
+    <div style="border-top:1px solid rgba(255,255,255,.08); padding-top:28px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
+      <p style="font-size:.78rem; color:rgba(255,255,255,.25); margin:0;">&copy; 2025 Novion Technologies. All rights reserved.</p>
+      <p style="font-size:.78rem; color:rgba(255,255,255,.25); margin:0;">Crafted in <span style="color:#0A9FD8;">Bhubaneswar, Odisha</span></p>
+    </div>
+  </div>
+</footer>
+
+
+<!-- ═══════════════════════════════════════════════════
+     SCRIPTS
+═══════════════════════════════════════════════════ -->
+<script>
+(function () {
+  'use strict';
+
+  // ── Responsive nav visibility ──
+  function applyNavLayout() {
+    var dNav     = document.getElementById('desktop-nav');
+    var hamburger = document.getElementById('menu-toggle');
+    if (window.innerWidth >= 768) {
+      dNav.style.display = 'flex';
+      hamburger.style.display = 'none';
+    } else {
+      dNav.style.display = 'none';
+      hamburger.style.display = 'flex';
+    }
+  }
+  applyNavLayout();
+  window.addEventListener('resize', applyNavLayout);
+
+  // ── Navbar: transparent over hero → pinned glass when scrolled ──
+  var navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', function () {
+    var heroHeight = window.innerHeight;
+    if (window.scrollY > heroHeight * 0.5) {
+      navbar.classList.add('pinned');
+    } else {
+      navbar.classList.remove('pinned');
+    }
+  }, { passive: true });
+
+  // ── Mobile menu ──
+  var toggle    = document.getElementById('menu-toggle');
+  var mobileMenu = document.getElementById('mobile-menu');
+  var iconOpen  = document.getElementById('icon-open');
+  var iconClose = document.getElementById('icon-close');
+
+  toggle.addEventListener('click', function () {
+    var isOpen = mobileMenu.style.display === 'block';
+    mobileMenu.style.display = isOpen ? 'none' : 'block';
+    toggle.setAttribute('aria-expanded', !isOpen);
+    iconOpen.style.display  = isOpen ? 'block' : 'none';
+    iconClose.style.display = isOpen ? 'none'  : 'block';
+  });
+
+  document.querySelectorAll('.mobile-link').forEach(function (link) {
+    link.addEventListener('click', function () {
+      mobileMenu.style.display = 'none';
+      toggle.setAttribute('aria-expanded', 'false');
+      iconOpen.style.display  = 'block';
+      iconClose.style.display = 'none';
+    });
+  });
+
+  // ── Scroll reveal ──
+  var observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('revealed');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('[data-reveal]').forEach(function (el) {
+    observer.observe(el);
+  });
+
+  // ── Contact form ──
+  var form    = document.getElementById('contact-form');
+  var success = document.getElementById('form-success');
+
+  form.addEventListener('submit', async function (e) {
+    e.preventDefault();
+    var btn = form.querySelector('[type="submit"]');
+    var orig = btn.innerHTML;
+    btn.disabled = true;
+    btn.textContent = 'Sending…';
+
+    try {
+      /* Uncomment to enable real delivery via Formspree (replace YOUR_FORM_ID): */
+      // var res = await fetch(form.action, {
+      //   method: 'POST', body: new FormData(form),
+      //   headers: { 'Accept': 'application/json' }
+      // });
+      // if (!res.ok) throw new Error('failed');
+      await new Promise(function (r) { setTimeout(r, 1000); });
+      form.style.display = 'none';
+      success.style.display = 'block';
+    } catch (_) {
+      btn.disabled = false;
+      btn.innerHTML = orig;
+    }
+  });
+
+}());
+</script>
+
+</body>
+</html>
