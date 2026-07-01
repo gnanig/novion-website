@@ -16,7 +16,7 @@ export default function Hero() {
             <div className="ha1 inline-flex items-center gap-[9px] px-4 py-[7px] rounded-full border border-white/25 bg-white/10 shadow-[0_10px_30px_rgba(0,0,0,.12)] mb-7">
               <span aria-hidden="true" className="w-[7px] h-[7px] rounded-full bg-n-blue flex-shrink-0" />
               <span className="text-[0.78rem] font-semibold text-white/80 tracking-[0.03em]">
-                Software / Testing / Consulting
+                Software | Testing | Consulting
               </span>
             </div>
 

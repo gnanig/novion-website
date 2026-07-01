@@ -33,7 +33,7 @@ export default function Navbar() {
       style={{ width: 'min(calc(100% - 2rem), 1040px)', background: 'rgba(255,255,255,0.78)', backdropFilter: 'blur(22px) saturate(1.25)', WebkitBackdropFilter: 'blur(22px) saturate(1.25)' }}
     >
       <div className="mx-auto px-5 sm:px-6 flex items-center justify-between">
-        <a href="#home" aria-label="Novion Technologies home" className="flex items-center no-underline rounded-xl bg-white/80 px-3 py-2 shadow-[0_8px_22px_rgba(0,0,0,.08)]">
+        <a href="#home" aria-label="Novion Technologies home">
           {logoError ? (
             <span style={{ fontFamily: 'Manrope, sans-serif', fontWeight: 800, color: '#13243A', fontSize: '1.1rem', letterSpacing: '-.01em' }}>
               novion <span className="text-n-blue">TECH</span>

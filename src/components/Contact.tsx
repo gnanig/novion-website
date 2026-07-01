@@ -55,7 +55,7 @@ export default function Contact() {
                 </div>
                 <div>
                   <p className="text-[0.72rem] font-bold tracking-[.08em] uppercase text-[#7895A8] m-0 mb-0.5">Location</p>
-                  <p className="text-[0.9rem] font-semibold text-n-dark m-0">Bhubaneswar, Odisha, India</p>
+                  <p className="text-[0.9rem] font-semibold text-n-dark m-0">11th Floor, O-HUB, SEZ, Bhubaneswar, India, 751024</p>
                 </div>
               </div>
 
@@ -67,8 +67,8 @@ export default function Contact() {
                 </div>
                 <div>
                   <p className="text-[0.72rem] font-bold tracking-[.08em] uppercase text-[#7895A8] m-0 mb-0.5">Email</p>
-                  <a href="mailto:info@noviontechnologies.com" className="text-[0.9rem] font-semibold text-n-blue no-underline">
-                    info@noviontechnologies.com
+                  <a href="mailto:info@noviontec.com" className="text-[0.9rem] font-semibold text-n-blue no-underline">
+                    info@noviontec.com
                   </a>
                 </div>
               </div>
