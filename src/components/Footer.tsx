@@ -2,9 +2,11 @@ import { useState } from 'react'
 
 const navLinks = [
   { href: '#home', label: 'Home' },
+  { href: '#about', label: 'About Us' },
+  { href: '#features', label: 'Features' },
   { href: '#services', label: 'Services' },
-  { href: '#features', label: 'Why Us' },
-  { href: '#about', label: 'About' },
+  { href: '#products', label: 'Products' },
+  { href: '#programs', label: 'Programs' },
   { href: '#contact', label: 'Contact' },
 ]
 
@@ -38,10 +40,10 @@ export default function Footer() {
               />
             )}
             <p className="text-sm leading-[1.7] max-w-[260px] m-0 mb-3 text-white/60">
-              Engineering Trust. Delivering Excellence. Your technology partner in Bhubaneswar, Odisha.
+              Engineering Trust. Delivering Quality. Your technology partner in Bhubaneswar, Odisha.
             </p>
             <p className="text-[0.72rem] italic m-0 text-white/35">
-              Trust / Reliability / Quality
+              Trust | Reliability | Quality
             </p>
           </div>
 

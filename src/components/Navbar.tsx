@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react'
 
 const navLinks = [
+  { href: '#about', label: 'About Us' },
+  { href: '#features', label: 'Features' },
   { href: '#services', label: 'Services' },
+  { href: '#products', label: 'Products' },
   { href: '#programs', label: 'Programs' },
-  { href: '#features', label: 'Why Us' },
-  { href: '#about', label: 'About' },
   { href: '#contact', label: 'Contact' },
 ]
 
@@ -27,13 +28,25 @@ export default function Navbar() {
       aria-label="Main navigation"
       className={`fixed left-1/2 z-50 -translate-x-1/2 transition-all duration-300 ${
         scrolled
-          ? 'top-[10px] py-3 rounded-2xl border border-white/25 shadow-[0_18px_48px_rgba(0,0,0,0.16)]'
-          : 'top-[14px] py-3 rounded-2xl border border-white/18 shadow-[0_16px_44px_rgba(0,0,0,0.12)]'
+          ? 'top-[10px] py-2 rounded-2xl border border-white/45 shadow-[0_18px_52px_rgba(0,42,78,0.16)]'
+          : 'top-[14px] py-2 rounded-2xl border border-white/40 shadow-[0_16px_48px_rgba(0,42,78,0.14)]'
       }`}
-      style={{ width: 'min(calc(100% - 2rem), 1040px)', background: 'rgba(255,255,255,0.78)', backdropFilter: 'blur(22px) saturate(1.25)', WebkitBackdropFilter: 'blur(22px) saturate(1.25)' }}
+      style={{
+        width: 'calc(100vw - 2rem)',
+        maxWidth: '1180px',
+        background: scrolled
+          ? 'linear-gradient(135deg, rgba(231,237,240,0.72), rgba(205,219,226,0.58))'
+          : 'linear-gradient(135deg, rgba(238,243,246,0.84), rgba(218,229,235,0.72))',
+        backdropFilter: 'blur(32px) saturate(1.35)',
+        WebkitBackdropFilter: 'blur(32px) saturate(1.35)',
+      }}
     >
       <div className="mx-auto px-5 sm:px-6 flex items-center justify-between">
-        <a href="#home" aria-label="Novion Technologies home">
+        <a
+          href="#home"
+          aria-label="Novion Technologies home"
+          className="inline-flex items-center"
+        >
           {logoError ? (
             <span style={{ fontFamily: 'Manrope, sans-serif', fontWeight: 800, color: '#13243A', fontSize: '1.1rem', letterSpacing: '-.01em' }}>
               novion <span className="text-n-blue">TECH</span>
@@ -42,18 +55,18 @@ export default function Navbar() {
             <img
               src="/assets/logo.png"
               alt="Novion Technologies"
-              className="h-[38px] w-auto"
+              className="h-[46px] w-auto"
               onError={() => setLogoError(true)}
             />
           )}
         </a>
 
-        <div className="hidden md:flex items-center gap-8">
+        <div className="hidden md:flex items-center gap-5">
           {navLinks.map((link) => (
             <a
               key={link.href}
               href={link.href}
-              className="relative text-sm font-bold text-n-slate no-underline tracking-[0.01em] transition-colors duration-200 hover:text-n-dark after:absolute after:left-0 after:-bottom-1 after:h-0.5 after:w-0 after:rounded-full after:bg-n-blue after:transition-all after:duration-200 hover:after:w-full"
+              className="relative text-[0.82rem] font-bold text-[#10243A] no-underline tracking-[0.01em] transition-colors duration-200 hover:text-[#00589A] after:absolute after:left-0 after:-bottom-1 after:h-0.5 after:w-0 after:rounded-full after:bg-[#00589A] after:transition-all after:duration-200 hover:after:w-full"
             >
               {link.label}
             </a>
@@ -63,7 +76,7 @@ export default function Navbar() {
         <div className="flex items-center gap-[10px]">
           <a
             href="#contact"
-            className="hidden md:inline-flex items-center gap-2 bg-n-blue text-white text-sm font-bold px-[22px] py-[10px] rounded-full border border-n-blue no-underline shadow-[0_10px_26px_rgba(0,161,240,.25)] transition-all duration-200 hover:-translate-y-px hover:shadow-[0_14px_34px_rgba(0,161,240,.34)]"
+            className="hidden md:inline-flex items-center gap-2 text-white text-sm font-bold px-[22px] py-[10px] rounded-full border border-white/35 no-underline bg-[linear-gradient(135deg,rgba(0,161,240,.78),rgba(39,108,172,.58))] shadow-[0_10px_28px_rgba(0,161,240,.26),inset_0_1px_0_rgba(255,255,255,.28)] backdrop-blur-xl transition-all duration-200 hover:-translate-y-px hover:shadow-[0_14px_34px_rgba(0,161,240,.36),0_0_22px_rgba(0,161,240,.2),inset_0_1px_0_rgba(255,255,255,.34)]"
           >
             Get Started
           </a>
@@ -91,12 +104,12 @@ export default function Navbar() {
 
       {menuOpen && (
         <div id="mobile-menu" className="px-4 pb-3 pt-2 md:hidden">
-          <div className="bg-white border border-n-border rounded-[14px] p-2 shadow-[0_16px_40px_rgba(19,36,58,.08)]">
+          <div className="border border-white/45 rounded-[14px] p-2 bg-[linear-gradient(135deg,rgba(231,237,240,.86),rgba(205,219,226,.72))] shadow-[0_16px_40px_rgba(0,42,78,.14)] backdrop-blur-xl">
             {navLinks.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
-                className="block px-4 py-[11px] text-n-slate no-underline rounded-[10px] text-sm font-semibold hover:bg-n-soft hover:text-n-dark"
+                className="block px-4 py-[11px] text-[#10243A] no-underline rounded-[10px] text-sm font-semibold hover:bg-white/45 hover:text-[#00589A]"
                 onClick={closeMenu}
               >
                 {link.label}
@@ -104,7 +117,7 @@ export default function Navbar() {
             ))}
             <a
               href="#contact"
-              className="block mt-1.5 px-5 py-3 bg-n-blue text-white text-center rounded-xl font-semibold text-sm no-underline"
+              className="block mt-1.5 px-5 py-3 text-white text-center rounded-full font-semibold text-sm no-underline border border-white/35 bg-[linear-gradient(135deg,rgba(0,161,240,.78),rgba(39,108,172,.58))] shadow-[0_10px_28px_rgba(0,161,240,.24),inset_0_1px_0_rgba(255,255,255,.25)]"
               onClick={closeMenu}
             >
               Get Started

@@ -154,7 +154,7 @@ export default function Contact() {
                 <button
                   type="submit"
                   disabled={status === 'loading'}
-                  className="flex items-center justify-center gap-2 w-full py-[14px] px-7 bg-n-dark text-white rounded-xl font-body font-semibold text-[0.9375rem] cursor-pointer transition-all duration-200 hover:bg-n-navy hover:-translate-y-px hover:shadow-[0_12px_28px_rgba(19,36,58,.18)] disabled:opacity-60 disabled:cursor-not-allowed"
+                  className="btn-primary w-full justify-center disabled:opacity-60 disabled:cursor-not-allowed"
                 >
                   {status === 'loading' ? 'Sending...' : (
                     <>

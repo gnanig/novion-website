@@ -5,7 +5,8 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 
 const modelUrl = new URL('../../assets/models/computer.glb', import.meta.url).href
-const logoUrl = '/assets/logo-icon.png'
+const logoUrl = '/assets/logo.png'
+const screenTint = '#D8E3EA'
 
 function createLogoTexture(onReady: (texture: THREE.CanvasTexture) => void) {
   const image = new Image()
@@ -18,17 +19,45 @@ function createLogoTexture(onReady: (texture: THREE.CanvasTexture) => void) {
     const ctx = canvas.getContext('2d')
     if (!ctx) return
 
-    ctx.fillStyle = '#ffffff'
+    ctx.fillStyle = screenTint
     ctx.fillRect(0, 0, canvas.width, canvas.height)
 
-    const maxSize = Math.min(canvas.width, canvas.height) * 0.86
-    const ratio = Math.min(maxSize / image.width, maxSize / image.height)
-    const width = image.width * ratio
-    const height = image.height * ratio
+    const sourceCanvas = document.createElement('canvas')
+    sourceCanvas.width = image.width
+    sourceCanvas.height = image.height
+    const sourceCtx = sourceCanvas.getContext('2d')
+    if (!sourceCtx) return
+
+    sourceCtx.drawImage(image, 0, 0)
+    const pixels = sourceCtx.getImageData(0, 0, image.width, image.height).data
+    let minX = image.width
+    let minY = image.height
+    let maxX = 0
+    let maxY = 0
+
+    for (let y = 0; y < image.height; y += 1) {
+      for (let x = 0; x < image.width; x += 1) {
+        const alpha = pixels[(y * image.width + x) * 4 + 3]
+        if (alpha > 8) {
+          minX = Math.min(minX, x)
+          minY = Math.min(minY, y)
+          maxX = Math.max(maxX, x)
+          maxY = Math.max(maxY, y)
+        }
+      }
+    }
+
+    const cropWidth = Math.max(1, maxX - minX + 1)
+    const cropHeight = Math.max(1, maxY - minY + 1)
+    const maxWidth = canvas.width * 0.9
+    const maxHeight = canvas.height * 0.64
+    const ratio = Math.min(maxWidth / cropWidth, maxHeight / cropHeight)
+    const width = cropWidth * ratio
+    const height = cropHeight * ratio
     const x = (canvas.width - width) / 2
     const y = (canvas.height - height) / 2
 
-    ctx.drawImage(image, x, y, width, height)
+    ctx.drawImage(image, minX, minY, cropWidth, cropHeight, x, y, width, height)
 
     const texture = new THREE.CanvasTexture(canvas)
     texture.colorSpace = THREE.SRGBColorSpace
@@ -118,15 +147,6 @@ export default function HeroModel() {
         if (/monitor-screen|screen|plane/i.test(child.name) || /screen|plane/i.test(child.geometry.name)) {
           child.material = screenMaterial
           child.renderOrder = 2
-
-          const overlays = [0.05, -0.05].map((y) => {
-            const overlay = new THREE.Mesh(new THREE.PlaneGeometry(1.76, 1.16), screenMaterial)
-            overlay.rotation.x = -Math.PI / 2
-            overlay.position.y = y
-            overlay.renderOrder = 3
-            return overlay
-          })
-          child.add(...overlays)
         }
       })
 

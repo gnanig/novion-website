@@ -1,9 +1,9 @@
 import { useEffect, useRef } from 'react'
 import * as THREE from 'three'
 
-const columns = 70
-const rows = 36
-const spacing = 0.36
+const columns = 150
+const rows = 86
+const spacing = 0.42
 
 export default function HeroWave() {
   const hostRef = useRef<HTMLDivElement>(null)
@@ -13,9 +13,10 @@ export default function HeroWave() {
     if (!host) return undefined
 
     const scene = new THREE.Scene()
-    const camera = new THREE.PerspectiveCamera(45, 1, 0.1, 100)
-    camera.position.set(0, 7.8, 8.2)
-    camera.lookAt(0, -1.15, -2.8)
+    scene.fog = new THREE.Fog('#173451', 18, 82)
+    const camera = new THREE.PerspectiveCamera(50, 1, 0.1, 240)
+    camera.position.set(0, 16, 5.5)
+    camera.lookAt(0, -3.4, -8)
 
     const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true })
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
@@ -35,9 +36,9 @@ export default function HeroWave() {
       pointsGeometry,
       new THREE.PointsMaterial({
         color: '#72D8FF',
-        size: 0.045,
+        size: 0.034,
         transparent: true,
-        opacity: 0.92,
+        opacity: 0.96,
         sizeAttenuation: true,
       }),
     )
@@ -47,14 +48,14 @@ export default function HeroWave() {
       new THREE.LineBasicMaterial({
         color: '#00A1F0',
         transparent: true,
-        opacity: 0.26,
+        opacity: 0.24,
       }),
     )
 
     const waveGroup = new THREE.Group()
-    waveGroup.rotation.x = -0.54
-    waveGroup.rotation.z = -0.06
-    waveGroup.position.set(0.2, -2.75, -1.4)
+    waveGroup.rotation.x = -0.78
+    waveGroup.rotation.z = -0.025
+    waveGroup.position.set(0, -3.15, -7.4)
     waveGroup.add(lines, particles)
     scene.add(waveGroup)
 
@@ -82,9 +83,9 @@ export default function HeroWave() {
         for (let col = 0; col < columns; col += 1) {
           const x = col * spacing - xOffset
           const z = row * spacing - zOffset
-          const swell = Math.sin((col * 0.26) + t * 2.1) * 0.58
-          const ripple = Math.cos((row * 0.38) - t * 1.7) * 0.34
-          const cross = Math.sin((col + row) * 0.13 + t) * 0.24
+          const swell = Math.sin((col * 0.13) + (row * 0.025) + t * 2.1) * 0.7
+          const ripple = Math.cos((row * 0.18) - t * 1.55) * 0.34
+          const cross = Math.sin((col + row) * 0.055 + t * 1.2) * 0.24
           writePoint(row * columns + col, x, swell + ripple + cross, z)
         }
       }
@@ -132,7 +133,7 @@ export default function HeroWave() {
     const animate = (time: number) => {
       frame = requestAnimationFrame(animate)
       updateWave(time)
-      waveGroup.position.x = 0.2 + Math.sin(time * 0.00028) * 0.32
+      waveGroup.position.x = Math.sin(time * 0.00024) * 0.6
       renderer.render(scene, camera)
     }
     animate(0)
