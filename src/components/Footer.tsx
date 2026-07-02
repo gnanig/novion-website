@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import SocialLinks from './SocialLinks'
 
 const navLinks = [
   { href: '#home', label: 'Home' },
@@ -22,8 +23,8 @@ export default function Footer() {
   const [logoError, setLogoError] = useState(false)
 
   return (
-    <footer className="relative overflow-hidden border-t border-white/20 bg-[linear-gradient(135deg,#071321,#102641_48%,#173451)] pt-[60px] pb-8 shadow-[inset_0_1px_0_rgba(255,255,255,.12)]">
-      <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_18%_10%,rgba(0,161,240,.22),transparent_30%),radial-gradient(circle_at_92%_28%,rgba(216,227,234,.12),transparent_34%)]" aria-hidden="true" />
+    <footer className="relative overflow-hidden border-t border-white/20 bg-[linear-gradient(135deg,#0A1F34,#123A59_48%,#173F61)] pt-[60px] pb-8 shadow-[inset_0_1px_0_rgba(255,255,255,.12)]">
+      <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_14%_12%,rgba(155,228,255,.24),rgba(0,161,240,.16)_24%,transparent_42%),radial-gradient(circle_at_92%_28%,rgba(216,227,234,.12),transparent_34%)]" aria-hidden="true" />
       <div className="max-w-7xl mx-auto px-8">
         <div className="relative z-[1] grid grid-cols-1 md:grid-cols-[2fr_1fr_1fr] gap-12 mb-12">
           <div>
@@ -35,8 +36,7 @@ export default function Footer() {
               <img
                 src="/assets/logo.png"
                 alt="Novion Technologies"
-                className="h-[30px] w-auto mb-4 block"
-                style={{ filter: 'brightness(0) invert(1)' }}
+                className="h-[42px] w-auto mb-4 block"
                 onError={() => setLogoError(true)}
               />
             )}
@@ -71,6 +71,12 @@ export default function Footer() {
                   {label}
                 </a>
               ))}
+            </div>
+            <div className="mt-7">
+              <p className="text-[0.72rem] font-bold tracking-[.12em] uppercase m-0 mb-[14px] text-[#9BE4FF]">
+                Social
+              </p>
+              <SocialLinks variant="footer" />
             </div>
           </div>
         </div>

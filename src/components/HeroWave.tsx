@@ -25,6 +25,14 @@ export default function HeroWave() {
 
     const particlePositions = new Float32Array(columns * rows * 3)
     const linePositions = new Float32Array(((columns - 1) * rows + (rows - 1) * columns) * 2 * 3)
+    const pointer = {
+      x: 0,
+      y: 0,
+      strength: 0,
+      targetX: 0,
+      targetY: 0,
+      targetStrength: 0,
+    }
 
     const pointsGeometry = new THREE.BufferGeometry()
     pointsGeometry.setAttribute('position', new THREE.BufferAttribute(particlePositions, 3))
@@ -78,6 +86,8 @@ export default function HeroWave() {
       const t = time * 0.00055
       const xOffset = ((columns - 1) * spacing) / 2
       const zOffset = ((rows - 1) * spacing) / 2
+      const cursorX = pointer.x * xOffset * 0.92
+      const cursorZ = pointer.y * zOffset * 0.72
 
       for (let row = 0; row < rows; row += 1) {
         for (let col = 0; col < columns; col += 1) {
@@ -86,7 +96,11 @@ export default function HeroWave() {
           const swell = Math.sin((col * 0.13) + (row * 0.025) + t * 2.1) * 0.7
           const ripple = Math.cos((row * 0.18) - t * 1.55) * 0.34
           const cross = Math.sin((col + row) * 0.055 + t * 1.2) * 0.24
-          writePoint(row * columns + col, x, swell + ripple + cross, z)
+          const distance = Math.hypot(x - cursorX, z - cursorZ)
+          const cursorFalloff = Math.exp(-distance * 0.12) * pointer.strength
+          const cursorRipple = Math.sin(distance * 0.95 - t * 8.2) * 0.78 * cursorFalloff
+          const cursorLift = Math.cos(distance * 0.34 - t * 3.4) * 0.26 * cursorFalloff
+          writePoint(row * columns + col, x, swell + ripple + cross + cursorRipple + cursorLift, z)
         }
       }
 
@@ -129,17 +143,43 @@ export default function HeroWave() {
     observer.observe(host)
     resize()
 
+    const onPointerMove = (event: PointerEvent) => {
+      const rect = host.getBoundingClientRect()
+      const inBounds =
+        event.clientX >= rect.left &&
+        event.clientX <= rect.right &&
+        event.clientY >= rect.top &&
+        event.clientY <= rect.bottom
+
+      if (!inBounds) {
+        pointer.targetStrength = 0
+        return
+      }
+
+      pointer.targetX = ((event.clientX - rect.left) / rect.width) * 2 - 1
+      pointer.targetY = ((event.clientY - rect.top) / rect.height) * 2 - 1
+      pointer.targetStrength = 1
+    }
+
+    window.addEventListener('pointermove', onPointerMove, { passive: true })
+
     let frame = 0
     const animate = (time: number) => {
       frame = requestAnimationFrame(animate)
+      pointer.x += (pointer.targetX - pointer.x) * 0.08
+      pointer.y += (pointer.targetY - pointer.y) * 0.08
+      pointer.strength += (pointer.targetStrength - pointer.strength) * 0.1
       updateWave(time)
-      waveGroup.position.x = Math.sin(time * 0.00024) * 0.6
+      waveGroup.position.x = Math.sin(time * 0.00024) * 0.6 + pointer.x * 0.48 * pointer.strength
+      waveGroup.position.y = -3.15 - pointer.y * 0.18 * pointer.strength
+      waveGroup.rotation.z = -0.025 + pointer.x * 0.035 * pointer.strength
       renderer.render(scene, camera)
     }
     animate(0)
 
     return () => {
       cancelAnimationFrame(frame)
+      window.removeEventListener('pointermove', onPointerMove)
       observer.disconnect()
       host.removeChild(renderer.domElement)
       pointsGeometry.dispose()

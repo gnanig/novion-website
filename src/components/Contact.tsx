@@ -1,9 +1,12 @@
 import { useState } from 'react'
 import { ChevronDown } from 'lucide-react'
+import SocialLinks from './SocialLinks'
 
 type Status = 'idle' | 'loading' | 'success' | 'error'
 
 const iconColor = '#00A1F0'
+const contactEndpoint = 'https://api.web3forms.com/submit'
+const accessKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY
 const fieldClass =
   'w-full px-4 py-[13px] bg-white/58 border border-white/60 rounded-xl text-n-dark font-body text-[0.9375rem] outline-none transition-all duration-200 backdrop-blur-xl focus:border-n-blue focus:bg-white/78 focus:shadow-[0_0_0_3px_rgba(0,161,240,0.12)] placeholder:text-[#7895A8]'
 
@@ -16,14 +19,50 @@ export default function Contact() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+
+    if (!accessKey) {
+      setStatus('error')
+      return
+    }
+
     setStatus('loading')
+
+    const selectedService = form.service || 'Not specified'
+    const emailBody = [
+      'New enquiry from the Novion Technologies website',
+      '',
+      `Name: ${form.name}`,
+      `Email: ${form.email}`,
+      `Service interested in: ${selectedService}`,
+      '',
+      'Message:',
+      form.message,
+      '',
+      `Submitted from: ${window.location.href}`,
+    ].join('\n')
+
     try {
-      const res = await fetch('https://formspree.io/f/YOUR_FORM_ID', {
+      const res = await fetch(contactEndpoint, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form),
+        body: JSON.stringify({
+          access_key: accessKey,
+          subject: `New website enquiry - ${selectedService}`,
+          from_name: 'Novion Technologies Website',
+          name: form.name,
+          email: form.email,
+          replyto: form.email,
+          service: selectedService,
+          message: emailBody,
+        }),
       })
-      setStatus(res.ok ? 'success' : 'error')
+      const data = await res.json().catch(() => null)
+      if (res.ok && data?.success) {
+        setStatus('success')
+        setForm({ name: '', email: '', service: '', message: '' })
+      } else {
+        setStatus('error')
+      }
     } catch {
       setStatus('error')
     }
@@ -60,34 +99,48 @@ export default function Contact() {
                 </div>
               </div>
 
-              <div className="glass-card group flex items-center gap-4 px-[22px] py-[18px] rounded-[14px] transition-all duration-300 hover:border-white/50 hover:-translate-y-0.5">
-                <div aria-hidden="true" className="w-[38px] h-[38px] rounded-[10px] flex items-center justify-center flex-shrink-0 bg-white/52 border border-white/60">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={iconColor} strokeWidth="2" strokeLinecap="round">
-                    <rect width="20" height="16" x="2" y="4" rx="2" /><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
-                  </svg>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="glass-card group flex items-center gap-4 px-[22px] py-[18px] rounded-[14px] transition-all duration-300 hover:border-white/50 hover:-translate-y-0.5">
+                  <div aria-hidden="true" className="w-[38px] h-[38px] rounded-[10px] flex items-center justify-center flex-shrink-0 bg-white/52 border border-white/60">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={iconColor} strokeWidth="2" strokeLinecap="round">
+                      <rect width="20" height="16" x="2" y="4" rx="2" /><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+                    </svg>
+                  </div>
+                  <div className="min-w-0">
+                    <p className="text-[0.72rem] font-bold tracking-[.08em] uppercase text-[#7895A8] m-0 mb-0.5">Email</p>
+                    <a href="mailto:info@noviontec.com" className="text-[0.9rem] font-semibold text-n-blue no-underline break-words">
+                      info@noviontec.com
+                    </a>
+                  </div>
                 </div>
-                <div>
-                  <p className="text-[0.72rem] font-bold tracking-[.08em] uppercase text-[#7895A8] m-0 mb-0.5">Email</p>
-                  <a href="mailto:info@noviontec.com" className="text-[0.9rem] font-semibold text-n-blue no-underline">
-                    info@noviontec.com
-                  </a>
+
+                <div className="glass-card flex items-center gap-4 px-[22px] py-[18px] rounded-[14px]">
+                  <div aria-hidden="true" className="w-[38px] h-[38px] rounded-[10px] flex items-center justify-center flex-shrink-0 bg-white/52 border border-white/60">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={iconColor} strokeWidth="2" strokeLinecap="round">
+                      <circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" />
+                    </svg>
+                  </div>
+                  <div className="min-w-0">
+                    <p className="text-[0.72rem] font-bold tracking-[.08em] uppercase text-[#7895A8] m-0 mb-0.5">
+                      Response Time
+                    </p>
+                    <p className="text-[0.9rem] font-semibold text-n-dark m-0">
+                      Typically Within <span className="text-n-blue">24 hours</span>
+                    </p>
+                  </div>
                 </div>
               </div>
 
-              <div className="glass-card flex items-center gap-4 px-[22px] py-[18px] rounded-[14px]">
-                <div aria-hidden="true" className="w-[38px] h-[38px] rounded-[10px] flex items-center justify-center flex-shrink-0 bg-white/52 border border-white/60">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={iconColor} strokeWidth="2" strokeLinecap="round">
-                    <circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" />
-                  </svg>
-                </div>
+              <div className="glass-card flex items-center justify-between gap-4 px-[22px] py-[18px] rounded-[14px]">
                 <div>
                   <p className="text-[0.72rem] font-bold tracking-[.08em] uppercase text-[#7895A8] m-0 mb-0.5">
-                    Response Time
+                    Social
                   </p>
                   <p className="text-[0.9rem] font-semibold text-n-dark m-0">
-                    Within <span className="text-n-blue">24 hours</span> on business days
+                    Connect with Novion
                   </p>
                 </div>
+                <SocialLinks />
               </div>
             </div>
           </div>
@@ -157,7 +210,9 @@ export default function Contact() {
                 </div>
 
                 {status === 'error' && (
-                  <p className="text-red-500 text-sm m-0">Something went wrong. Please try again.</p>
+                  <p className="text-red-400 text-sm m-0">
+                    Message could not be sent. Please check the form setup or email us directly at info@noviontec.com.
+                  </p>
                 )}
 
                 <button

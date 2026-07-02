@@ -4,7 +4,6 @@ const items = [
   'End-to-End Testing',
   'Strategic Consulting',
   'Reliable Delivery',
-  'Bhubaneswar, Odisha',
 ]
 
 function TrackItems() {
@@ -12,7 +11,7 @@ function TrackItems() {
     <span className="flex items-center" aria-hidden="true">
       {items.map((item, index) => (
         <span key={`${item}-${index}`} className="flex items-center">
-          <span className="px-10 sm:px-[52px] text-[0.72rem] font-extrabold tracking-[.16em] uppercase text-white/72 whitespace-nowrap">
+          <span className="px-10 sm:px-[52px] text-[0.72rem] font-extrabold tracking-[.16em] uppercase text-white whitespace-nowrap">
             {item}
           </span>
           <span className="h-1.5 w-1.5 rounded-full bg-n-blue shadow-[0_0_18px_rgba(0,161,240,.8)]" />
@@ -24,9 +23,9 @@ function TrackItems() {
 
 export default function MarqueeStrip() {
   return (
-    <section className="relative overflow-hidden border-y border-[rgba(100,180,230,.2)] bg-[linear-gradient(135deg,#071321_0%,#0B1D32_48%,#102641_100%)] py-5 shadow-[inset_0_1px_0_rgba(255,255,255,.06)]" aria-label="Novion values">
-      <div className="absolute inset-0 pointer-events-none bg-[linear-gradient(90deg,rgba(7,19,33,.95),transparent_18%,transparent_82%,rgba(7,19,33,.95))]" />
-      <div className="absolute inset-0 pointer-events-none opacity-70 bg-[radial-gradient(circle_at_18%_50%,rgba(0,161,240,.18),transparent_28%),radial-gradient(circle_at_86%_50%,rgba(101,213,255,.12),transparent_30%)]" />
+    <section className="relative overflow-hidden border-y border-[rgba(100,180,230,.26)] bg-[linear-gradient(135deg,#03101D_0%,#061A2D_48%,#08233C_100%)] py-5 shadow-[inset_0_1px_0_rgba(255,255,255,.07)]" aria-label="Novion values">
+      <div className="absolute inset-0 pointer-events-none bg-[linear-gradient(90deg,rgba(3,16,29,.96),transparent_18%,transparent_82%,rgba(3,16,29,.96))]" />
+      <div className="absolute inset-0 pointer-events-none opacity-80 bg-[radial-gradient(circle_at_18%_50%,rgba(0,161,240,.22),transparent_28%),radial-gradient(circle_at_86%_50%,rgba(101,213,255,.14),transparent_30%)]" />
       <div className="marquee-track relative z-[1]">
         <TrackItems />
         <TrackItems />

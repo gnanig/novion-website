@@ -35,10 +35,13 @@ export default function Navbar() {
         width: 'calc(100vw - 2rem)',
         maxWidth: '1180px',
         background: scrolled
-          ? 'linear-gradient(135deg, rgba(231,237,240,0.72), rgba(205,219,226,0.58))'
-          : 'linear-gradient(135deg, rgba(238,243,246,0.84), rgba(218,229,235,0.72))',
-        backdropFilter: 'blur(32px) saturate(1.35)',
-        WebkitBackdropFilter: 'blur(32px) saturate(1.35)',
+          ? 'radial-gradient(circle at 50% 0%, rgba(155,228,255,0.26), transparent 42%), linear-gradient(90deg, rgba(151,184,207,0.58), rgba(208,229,240,0.76) 48%, rgba(151,184,207,0.58))'
+          : 'radial-gradient(circle at 50% 0%, rgba(155,228,255,0.3), transparent 44%), linear-gradient(90deg, rgba(169,202,220,0.64), rgba(224,240,247,0.8) 48%, rgba(169,202,220,0.64))',
+        backdropFilter: 'blur(38px) saturate(1.55) contrast(1.03)',
+        WebkitBackdropFilter: 'blur(38px) saturate(1.55) contrast(1.03)',
+        boxShadow: scrolled
+          ? '0 20px 58px rgba(0,42,78,0.18), inset 0 1px 0 rgba(255,255,255,0.72), inset 0 -18px 42px rgba(0,82,130,0.08)'
+          : '0 18px 54px rgba(0,42,78,0.16), inset 0 1px 0 rgba(255,255,255,0.78), inset 0 -18px 42px rgba(0,82,130,0.08)',
       }}
     >
       <div className="mx-auto px-5 sm:px-6 flex items-center justify-between">
@@ -66,7 +69,7 @@ export default function Navbar() {
             <a
               key={link.href}
               href={link.href}
-              className="relative text-[0.82rem] font-bold text-[#10243A] no-underline tracking-[0.01em] transition-colors duration-200 hover:text-[#00589A] after:absolute after:left-0 after:-bottom-1 after:h-0.5 after:w-0 after:rounded-full after:bg-[#00589A] after:transition-all after:duration-200 hover:after:w-full"
+              className="relative text-[0.94rem] font-bold text-[#10243A] no-underline tracking-[0.01em] transition-colors duration-200 hover:text-[#00589A] after:absolute after:left-0 after:-bottom-1 after:h-0.5 after:w-0 after:rounded-full after:bg-[#00589A] after:transition-all after:duration-200 hover:after:w-full"
             >
               {link.label}
             </a>
@@ -76,7 +79,7 @@ export default function Navbar() {
         <div className="flex items-center gap-[10px]">
           <a
             href="#contact"
-            className="hidden md:inline-flex items-center gap-2 text-white text-sm font-bold px-[22px] py-[10px] rounded-full border border-white/35 no-underline bg-[linear-gradient(135deg,rgba(0,161,240,.78),rgba(39,108,172,.58))] shadow-[0_10px_28px_rgba(0,161,240,.26),inset_0_1px_0_rgba(255,255,255,.28)] backdrop-blur-xl transition-all duration-200 hover:-translate-y-px hover:shadow-[0_14px_34px_rgba(0,161,240,.36),0_0_22px_rgba(0,161,240,.2),inset_0_1px_0_rgba(255,255,255,.34)]"
+            className="nav-cta btn-secondary"
           >
             Get Started
           </a>
@@ -104,12 +107,12 @@ export default function Navbar() {
 
       {menuOpen && (
         <div id="mobile-menu" className="px-4 pb-3 pt-2 md:hidden">
-          <div className="border border-white/45 rounded-[14px] p-2 bg-[linear-gradient(135deg,rgba(231,237,240,.86),rgba(205,219,226,.72))] shadow-[0_16px_40px_rgba(0,42,78,.14)] backdrop-blur-xl">
+          <div className="border border-white/55 rounded-[14px] p-2 bg-[radial-gradient(circle_at_18%_0%,rgba(155,228,255,.36),transparent_36%),linear-gradient(135deg,rgba(220,238,246,.8),rgba(157,190,211,.64))] shadow-[0_18px_48px_rgba(0,42,78,.2),inset_0_1px_0_rgba(255,255,255,.66)] backdrop-blur-[32px]">
             {navLinks.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
-                className="block px-4 py-[11px] text-[#10243A] no-underline rounded-[10px] text-sm font-semibold hover:bg-white/45 hover:text-[#00589A]"
+                className="block px-4 py-[11px] text-[#10243A] no-underline rounded-[10px] text-[0.95rem] font-semibold hover:bg-white/45 hover:text-[#00589A]"
                 onClick={closeMenu}
               >
                 {link.label}
@@ -117,7 +120,7 @@ export default function Navbar() {
             ))}
             <a
               href="#contact"
-              className="block mt-1.5 px-5 py-3 text-white text-center rounded-full font-semibold text-sm no-underline border border-white/35 bg-[linear-gradient(135deg,rgba(0,161,240,.78),rgba(39,108,172,.58))] shadow-[0_10px_28px_rgba(0,161,240,.24),inset_0_1px_0_rgba(255,255,255,.25)]"
+              className="btn-secondary mt-1.5 w-full justify-center"
               onClick={closeMenu}
             >
               Get Started

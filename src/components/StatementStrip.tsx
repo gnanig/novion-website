@@ -27,7 +27,7 @@ export default function StatementStrip() {
             {pillars.map(({ word, desc }) => (
               <article
                 key={word}
-                className="rounded-[18px] border border-[rgba(100,213,255,.18)] bg-[linear-gradient(135deg,rgba(255,255,255,.08),rgba(255,255,255,.035))] p-6 text-center shadow-[inset_0_1px_0_rgba(255,255,255,.08)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:border-[rgba(100,213,255,.38)] hover:shadow-[0_20px_52px_rgba(0,8,18,.24),0_0_24px_rgba(0,161,240,.08)]"
+                className="rounded-[18px] border border-[rgba(155,228,255,.3)] bg-[radial-gradient(circle_at_20%_0%,rgba(155,228,255,.22),transparent_38%),linear-gradient(135deg,rgba(29,83,122,.54),rgba(16,54,85,.38)_48%,rgba(18,34,76,.48))] p-6 text-center shadow-[0_18px_48px_rgba(0,8,18,.24),inset_0_1px_0_rgba(255,255,255,.28),inset_0_-24px_52px_rgba(0,8,18,.12)] backdrop-blur-[28px] transition-all duration-300 hover:-translate-y-1 hover:border-[rgba(190,235,255,.55)] hover:shadow-[0_24px_62px_rgba(0,8,18,.34),0_0_30px_rgba(0,161,240,.13),inset_0_1px_0_rgba(255,255,255,.34)]"
               >
                 <p className="font-display font-extrabold text-n-blue text-2xl tracking-[-0.01em] m-0 mb-2">{word}</p>
                 <p className="text-[0.82rem] text-[rgba(214,229,238,.78)] leading-[1.55] m-0">{desc}</p>
