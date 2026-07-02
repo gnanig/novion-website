@@ -35,24 +35,24 @@ export default function Programs() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 items-stretch">
             {programs.map((program, index) => (
               <article
                 key={program.title}
-                className={`reveal ${index === 1 ? 'reveal-d1' : ''} glass-card overflow-hidden rounded-[20px] p-7 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_28px_80px_rgba(19,36,58,.18)]`}
+                className={`reveal ${index === 1 ? 'reveal-d1' : ''} glass-card h-full overflow-hidden rounded-[20px] p-7 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_28px_80px_rgba(19,36,58,.18)]`}
               >
                 <div className={`absolute inset-0 bg-gradient-to-br ${program.accent}`} aria-hidden="true" />
-                <div className="relative z-[1]">
+                <div className="relative z-[1] flex h-full flex-col">
                   <p className="text-[0.7rem] font-bold tracking-[.14em] uppercase text-[#6F45FF] m-0 mb-3">
                     {program.eyebrow}
                   </p>
                   <h3 className="font-display text-[1.35rem] leading-[1.18] font-extrabold text-n-dark tracking-[-0.01em] m-0 mb-4">
                     {program.title}
                   </h3>
-                  <p className="text-[0.94rem] text-n-slate leading-[1.7] m-0 mb-6">
+                  <p className="text-[0.94rem] text-n-slate leading-[1.7] m-0 flex-1">
                     {program.description}
                   </p>
-                  <div className="flex flex-col gap-2.5">
+                  <div className="mt-auto flex flex-col gap-2.5 pt-6">
                     {program.points.map((point) => (
                       <div key={point} className="flex items-center gap-2 text-sm font-semibold text-n-dark">
                         <span className="h-2 w-2 rounded-full bg-n-blue shadow-[0_0_18px_rgba(0,161,240,.55)]" aria-hidden="true" />

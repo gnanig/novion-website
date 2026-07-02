@@ -16,15 +16,16 @@ const serviceLinks = [
   'Consulting',
 ]
 
-const linkClass = 'text-sm no-underline text-white/60 transition-colors duration-200 hover:text-white'
+const linkClass = 'text-sm no-underline text-[#C8D8E2] transition-colors duration-200 hover:text-white'
 
 export default function Footer() {
   const [logoError, setLogoError] = useState(false)
 
   return (
-    <footer className="bg-[#122A3F] pt-[60px] pb-8">
+    <footer className="relative overflow-hidden border-t border-white/20 bg-[linear-gradient(135deg,#071321,#102641_48%,#173451)] pt-[60px] pb-8 shadow-[inset_0_1px_0_rgba(255,255,255,.12)]">
+      <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_18%_10%,rgba(0,161,240,.22),transparent_30%),radial-gradient(circle_at_92%_28%,rgba(216,227,234,.12),transparent_34%)]" aria-hidden="true" />
       <div className="max-w-7xl mx-auto px-8">
-        <div className="grid grid-cols-1 md:grid-cols-[2fr_1fr_1fr] gap-12 mb-12">
+        <div className="relative z-[1] grid grid-cols-1 md:grid-cols-[2fr_1fr_1fr] gap-12 mb-12">
           <div>
             {logoError ? (
               <span className="block mb-4 font-display font-extrabold text-white text-[1.05rem] tracking-[-0.01em]">
@@ -39,16 +40,16 @@ export default function Footer() {
                 onError={() => setLogoError(true)}
               />
             )}
-            <p className="text-sm leading-[1.7] max-w-[260px] m-0 mb-3 text-white/60">
+            <p className="text-sm leading-[1.7] max-w-[260px] m-0 mb-3 text-[#C8D8E2]">
               Engineering Trust. Delivering Quality. Your technology partner in Bhubaneswar, Odisha.
             </p>
-            <p className="text-[0.72rem] italic m-0 text-white/35">
+            <p className="text-[0.72rem] italic m-0 text-white/45">
               Trust | Reliability | Quality
             </p>
           </div>
 
           <div>
-            <p className="text-[0.72rem] font-bold tracking-[.12em] uppercase m-0 mb-[18px] text-white/40">
+            <p className="text-[0.72rem] font-bold tracking-[.12em] uppercase m-0 mb-[18px] text-[#9BE4FF]">
               Navigation
             </p>
             <div className="flex flex-col gap-[11px]">
@@ -61,7 +62,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <p className="text-[0.72rem] font-bold tracking-[.12em] uppercase m-0 mb-[18px] text-white/40">
+            <p className="text-[0.72rem] font-bold tracking-[.12em] uppercase m-0 mb-[18px] text-[#9BE4FF]">
               Services
             </p>
             <div className="flex flex-col gap-[11px]">
@@ -74,11 +75,11 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="pt-7 flex justify-between items-center flex-wrap gap-[10px] border-t border-white/10">
-          <p className="text-[0.78rem] m-0 text-white/35">
+        <div className="relative z-[1] pt-7 flex justify-between items-center flex-wrap gap-[10px] border-t border-white/12">
+          <p className="text-[0.78rem] m-0 text-white/45">
             Copyright 2025 Novion Technologies. All rights reserved.
           </p>
-          <p className="text-[0.78rem] m-0 text-white/35">
+          <p className="text-[0.78rem] m-0 text-white/45">
             Crafted in <span className="text-n-blue">Bhubaneswar, Odisha</span>
           </p>
         </div>

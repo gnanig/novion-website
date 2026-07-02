@@ -1,10 +1,11 @@
 import { useState } from 'react'
+import { ChevronDown } from 'lucide-react'
 
 type Status = 'idle' | 'loading' | 'success' | 'error'
 
 const iconColor = '#00A1F0'
 const fieldClass =
-  'w-full px-4 py-[13px] bg-white border-[1.5px] border-n-border rounded-xl text-n-dark font-body text-[0.9375rem] outline-none transition-all duration-200 focus:border-n-blue focus:shadow-[0_0_0_3px_rgba(0,161,240,0.12)] placeholder:text-[#8DA4B6]'
+  'w-full px-4 py-[13px] bg-white/58 border border-white/60 rounded-xl text-n-dark font-body text-[0.9375rem] outline-none transition-all duration-200 backdrop-blur-xl focus:border-n-blue focus:bg-white/78 focus:shadow-[0_0_0_3px_rgba(0,161,240,0.12)] placeholder:text-[#7895A8]'
 
 export default function Contact() {
   const [status, setStatus] = useState<Status>('idle')
@@ -48,7 +49,7 @@ export default function Contact() {
 
             <div className="flex flex-col gap-4">
               <div className="glass-card group flex items-center gap-4 px-[22px] py-[18px] rounded-[14px] transition-all duration-300 hover:border-white/50 hover:-translate-y-0.5">
-                <div aria-hidden="true" className="w-[38px] h-[38px] rounded-[10px] flex items-center justify-center flex-shrink-0 bg-n-soft">
+                <div aria-hidden="true" className="w-[38px] h-[38px] rounded-[10px] flex items-center justify-center flex-shrink-0 bg-white/52 border border-white/60">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={iconColor} strokeWidth="2" strokeLinecap="round">
                     <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" /><circle cx="12" cy="10" r="3" />
                   </svg>
@@ -60,7 +61,7 @@ export default function Contact() {
               </div>
 
               <div className="glass-card group flex items-center gap-4 px-[22px] py-[18px] rounded-[14px] transition-all duration-300 hover:border-white/50 hover:-translate-y-0.5">
-                <div aria-hidden="true" className="w-[38px] h-[38px] rounded-[10px] flex items-center justify-center flex-shrink-0 bg-n-soft">
+                <div aria-hidden="true" className="w-[38px] h-[38px] rounded-[10px] flex items-center justify-center flex-shrink-0 bg-white/52 border border-white/60">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={iconColor} strokeWidth="2" strokeLinecap="round">
                     <rect width="20" height="16" x="2" y="4" rx="2" /><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
                   </svg>
@@ -74,7 +75,7 @@ export default function Contact() {
               </div>
 
               <div className="glass-card flex items-center gap-4 px-[22px] py-[18px] rounded-[14px]">
-                <div aria-hidden="true" className="w-[38px] h-[38px] rounded-[10px] flex items-center justify-center flex-shrink-0 bg-white">
+                <div aria-hidden="true" className="w-[38px] h-[38px] rounded-[10px] flex items-center justify-center flex-shrink-0 bg-white/52 border border-white/60">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={iconColor} strokeWidth="2" strokeLinecap="round">
                     <circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" />
                   </svg>
@@ -124,17 +125,25 @@ export default function Contact() {
 
                 <div>
                   <label htmlFor="service" className="block text-[0.82rem] font-bold text-n-dark mb-1.5">Service Interested In</label>
-                  <select
-                    id="service" name="service"
-                    value={form.service} onChange={set('service')}
-                    className={fieldClass}
-                  >
-                    <option value="">Select a service...</option>
-                    <option value="software">Software Solutions</option>
-                    <option value="testing">Testing Services</option>
-                    <option value="consulting">Consulting</option>
-                    <option value="other">Other / Not Sure</option>
-                  </select>
+                  <div className="relative">
+                    <select
+                      id="service" name="service"
+                      value={form.service} onChange={set('service')}
+                      className={`${fieldClass} cursor-pointer appearance-none pr-12`}
+                    >
+                      <option value="">Select a service...</option>
+                      <option value="software">Software Solutions</option>
+                      <option value="testing">Testing Services</option>
+                      <option value="consulting">Consulting</option>
+                      <option value="other">Other / Not Sure</option>
+                    </select>
+                    <ChevronDown
+                      aria-hidden="true"
+                      size={18}
+                      strokeWidth={2.2}
+                      className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-[#9BE4FF]"
+                    />
+                  </div>
                 </div>
 
                 <div>

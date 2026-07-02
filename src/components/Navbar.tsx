@@ -61,7 +61,7 @@ export default function Navbar() {
           )}
         </a>
 
-        <div className="hidden md:flex items-center gap-5">
+        <div className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
             <a
               key={link.href}

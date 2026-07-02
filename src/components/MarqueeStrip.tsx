@@ -10,12 +10,12 @@ const items = [
 function TrackItems() {
   return (
     <span className="flex items-center" aria-hidden="true">
-      {items.map((item, i) => (
-        <span key={i} className="flex items-center">
-          <span className="px-[52px] text-white/58 text-[0.78rem] font-bold tracking-[.14em] uppercase whitespace-nowrap">
+      {items.map((item, index) => (
+        <span key={`${item}-${index}`} className="flex items-center">
+          <span className="px-10 sm:px-[52px] text-[0.72rem] font-extrabold tracking-[.16em] uppercase text-white/72 whitespace-nowrap">
             {item}
           </span>
-          <span className="text-n-blue text-[0.55rem]">/</span>
+          <span className="h-1.5 w-1.5 rounded-full bg-n-blue shadow-[0_0_18px_rgba(0,161,240,.8)]" />
         </span>
       ))}
     </span>
@@ -24,14 +24,13 @@ function TrackItems() {
 
 export default function MarqueeStrip() {
   return (
-    <div
-      className="bg-[#071321] py-8 overflow-hidden border-y border-white/10"
-      aria-label="Our values"
-    >
-      <div className="marquee-track">
+    <section className="relative overflow-hidden border-y border-[rgba(100,180,230,.2)] bg-[linear-gradient(135deg,#071321_0%,#0B1D32_48%,#102641_100%)] py-5 shadow-[inset_0_1px_0_rgba(255,255,255,.06)]" aria-label="Novion values">
+      <div className="absolute inset-0 pointer-events-none bg-[linear-gradient(90deg,rgba(7,19,33,.95),transparent_18%,transparent_82%,rgba(7,19,33,.95))]" />
+      <div className="absolute inset-0 pointer-events-none opacity-70 bg-[radial-gradient(circle_at_18%_50%,rgba(0,161,240,.18),transparent_28%),radial-gradient(circle_at_86%_50%,rgba(101,213,255,.12),transparent_30%)]" />
+      <div className="marquee-track relative z-[1]">
         <TrackItems />
         <TrackItems />
       </div>
-    </div>
+    </section>
   )
 }

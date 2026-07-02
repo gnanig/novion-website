@@ -65,11 +65,11 @@ export default function Services() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 items-stretch">
           {services.map((svc) => (
             <div
               key={svc.title}
-              className={`reveal ${svc.delay ?? ''} glass-card group rounded-[18px] p-9 transition-all duration-[250ms] hover:border-white/50 hover:shadow-[0_24px_70px_rgba(19,36,58,0.16)] hover:-translate-y-1`}
+              className={`reveal ${svc.delay ?? ''} glass-card group flex h-full flex-col rounded-[18px] p-9 transition-all duration-[250ms] hover:border-white/50 hover:shadow-[0_24px_70px_rgba(19,36,58,0.16)] hover:-translate-y-1`}
             >
               <div
                 aria-hidden="true"
@@ -80,10 +80,10 @@ export default function Services() {
               <h3 className="font-display font-bold text-n-dark text-[1.3rem] tracking-[-0.01em] m-0 mb-[14px]">
                 {svc.title}
               </h3>
-              <p className="text-[0.9375rem] text-n-slate leading-[1.7] m-0 mb-7">
+              <p className="text-[0.9375rem] text-n-slate leading-[1.7] m-0 flex-1">
                 {svc.description}
               </p>
-              <div className="flex flex-wrap gap-1.5">
+              <div className="mt-auto flex flex-wrap gap-1.5 pt-7">
                 {svc.tags.map((tag) => (
                   <span
                     key={tag}

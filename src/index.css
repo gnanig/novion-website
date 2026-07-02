@@ -6,10 +6,10 @@ body {
   font-family: 'Manrope', system-ui, sans-serif;
   color: #13243A;
   background:
-    radial-gradient(circle at 10% 0%, rgba(0,161,240,.18), transparent 32%),
-    radial-gradient(circle at 92% 18%, rgba(124,92,255,.16), transparent 34%),
-    radial-gradient(circle at 80% 82%, rgba(45,191,159,.16), transparent 36%),
-    linear-gradient(135deg, #F7FCFF 0%, #EEF8F6 46%, #F7F3FF 100%);
+    radial-gradient(circle at 10% 0%, rgba(0,161,240,.16), transparent 32%),
+    radial-gradient(circle at 92% 18%, rgba(90,117,186,.12), transparent 34%),
+    radial-gradient(circle at 80% 82%, rgba(45,191,159,.12), transparent 36%),
+    linear-gradient(135deg, #F4FAFD 0%, #EAF3F7 46%, #F2F6FA 100%);
   overflow-x: hidden;
   text-rendering: geometricPrecision;
   -webkit-font-smoothing: antialiased;
@@ -85,11 +85,13 @@ body,
 .glass-panel,
 .glass-card {
   position: relative;
-  border: 1px solid rgba(255,255,255,.24);
-  background: linear-gradient(135deg, rgba(255,255,255,.16), rgba(255,255,255,.07));
-  box-shadow: 0 24px 70px rgba(4,18,32,.22);
-  backdrop-filter: blur(22px) saturate(1.25);
-  -webkit-backdrop-filter: blur(22px) saturate(1.25);
+  border: 1px solid rgba(100,180,230,.18);
+  background:
+    linear-gradient(135deg, rgba(12,34,58,.82), rgba(10,28,49,.64)),
+    linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,0));
+  box-shadow: 0 22px 62px rgba(0,8,18,.26), inset 0 1px 0 rgba(255,255,255,.08);
+  backdrop-filter: blur(24px) saturate(1.2);
+  -webkit-backdrop-filter: blur(24px) saturate(1.2);
 }
 
 .glass-card {
@@ -106,6 +108,7 @@ body,
   align-items: center;
   border-color: rgba(255,255,255,.14);
   background: linear-gradient(135deg, rgba(255,255,255,.016), rgba(255,255,255,.002));
+  box-shadow: 0 24px 70px rgba(4,18,32,.22);
   backdrop-filter: blur(5px) saturate(1.08);
   -webkit-backdrop-filter: blur(5px) saturate(1.08);
   transform: translateY(-8px);
@@ -142,10 +145,113 @@ body,
 }
 
 .glass-section {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border-top: 1px solid rgba(100,180,230,.16);
+  border-bottom: 1px solid rgba(0,161,240,.1);
   background:
-    radial-gradient(circle at 12% 20%, rgba(0,161,240,.14), transparent 30%),
-    radial-gradient(circle at 92% 36%, rgba(124,92,255,.14), transparent 32%),
-    linear-gradient(135deg, rgba(247,252,255,.9), rgba(239,250,245,.86));
+    radial-gradient(circle at 14% 12%, rgba(0,161,240,.13), transparent 28%),
+    radial-gradient(circle at 88% 28%, rgba(39,108,172,.18), transparent 34%),
+    linear-gradient(135deg, #071321 0%, #0B1D32 48%, #102641 100%);
+}
+
+.glass-section:nth-of-type(even) {
+  background:
+    radial-gradient(circle at 82% 16%, rgba(0,161,240,.15), transparent 30%),
+    radial-gradient(circle at 12% 82%, rgba(45,191,159,.08), transparent 34%),
+    linear-gradient(135deg, #081727 0%, #0E253D 52%, #102A43 100%);
+}
+
+.glass-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(0,161,240,.055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,161,240,.045) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: linear-gradient(to bottom, transparent, rgba(0,0,0,.72) 16%, rgba(0,0,0,.58) 84%, transparent);
+}
+
+.glass-section::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: min(1120px, calc(100% - 3rem));
+  height: 1px;
+  transform: translateX(-50%);
+  background: linear-gradient(90deg, transparent, rgba(0,161,240,.65), rgba(155,228,255,.5), transparent);
+  pointer-events: none;
+}
+
+.glass-section > div {
+  position: relative;
+  z-index: 1;
+}
+
+.glass-section .text-n-dark,
+.glass-section .text-n-slate {
+  color: rgba(232,244,250,.88);
+}
+
+.glass-section h2,
+.glass-section h3 {
+  color: #fff;
+}
+
+.glass-section h2 {
+  text-shadow: 0 16px 42px rgba(0,8,18,.32);
+}
+
+.glass-section p {
+  color: rgba(214,229,238,.78);
+}
+
+.glass-section .text-n-blue {
+  color: #65D5FF;
+}
+
+.glass-section span.text-n-blue,
+.glass-section .text-n-blue {
+  text-shadow: 0 0 22px rgba(0,161,240,.18);
+}
+
+.glass-section .bg-n-soft,
+.glass-section .bg-white {
+  background: rgba(0,161,240,.09);
+  border: 1px solid rgba(100,213,255,.16);
+}
+
+.glass-section input,
+.glass-section select,
+.glass-section textarea {
+  background: rgba(8,25,43,.58);
+  border-color: rgba(100,180,230,.2);
+  color: #fff;
+}
+
+.glass-section input::placeholder,
+.glass-section textarea::placeholder {
+  color: rgba(200,216,226,.58);
+}
+
+.glass-section option {
+  color: #10243A;
+}
+
+.glass-section span[class*='bg-white'] {
+  background: rgba(255,255,255,.08);
+  border-color: rgba(100,213,255,.18);
+  color: rgba(232,244,250,.84);
+}
+
+.glass-section .glass-card:hover {
+  border-color: rgba(100,213,255,.38);
+  box-shadow: 0 28px 80px rgba(0,8,18,.34), 0 0 34px rgba(0,161,240,.08), inset 0 1px 0 rgba(255,255,255,.1);
 }
 
 .hero-model-shell {
