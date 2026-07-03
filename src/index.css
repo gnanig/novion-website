@@ -415,25 +415,15 @@ body,
 
 @media (max-width: 767px) {
   .hero-atmosphere {
-    --hero-mobile-top: clamp(88px, 16svh, 104px);
-    --hero-mobile-bottom: 16px;
-    min-height: 100vh !important;
-    min-height: 100svh !important;
-    height: 100vh !important;
-    height: 100svh !important;
-    max-height: 100svh;
+    min-height: auto !important;
+    height: auto !important;
     align-items: flex-start;
-    box-sizing: border-box;
-    padding-top: var(--hero-mobile-top) !important;
-    padding-bottom: var(--hero-mobile-bottom);
+    padding-top: 104px !important;
+    padding-bottom: 28px;
   }
 
   .hero-content {
-    display: flex;
-    align-items: center;
-    height: calc(100svh - var(--hero-mobile-top) - var(--hero-mobile-bottom));
-    min-height: 0;
-    padding-top: 0;
+    padding-top: .6rem;
     padding-bottom: 0;
   }
 
@@ -445,7 +435,6 @@ body,
     grid-template-columns: 1fr;
     transform: translateY(-4px);
     padding: .9rem;
-    max-height: 100%;
   }
 
   .hero-copy-panel,
