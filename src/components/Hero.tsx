@@ -1,8 +1,22 @@
+import { useEffect, useState } from 'react'
 import { FaCircleArrowRight } from 'react-icons/fa6'
 import HeroWave from './HeroWave'
 import HeroModel from './HeroModel'
 
 export default function Hero() {
+  const [showModel, setShowModel] = useState(() =>
+    typeof window === 'undefined' ? false : window.matchMedia('(min-width: 768px)').matches
+  )
+
+  useEffect(() => {
+    const media = window.matchMedia('(min-width: 768px)')
+    const update = () => setShowModel(media.matches)
+
+    update()
+    media.addEventListener('change', update)
+    return () => media.removeEventListener('change', update)
+  }, [])
+
   return (
     <section
       id="home"
@@ -37,7 +51,7 @@ export default function Hero() {
               Novion Technologies is your end-to-end technology partner, from precision software development and rigorous testing to strategic consulting that delivers real results.
             </p>
 
-            <div className="ha5 flex flex-col sm:flex-row gap-[14px] items-start sm:items-center">
+            <div className="ha5 hero-actions flex flex-row flex-nowrap gap-2 sm:gap-[14px] items-center">
               <a href="#services" className="btn-primary hero-services-cta">
                 Explore Services
                 <FaCircleArrowRight aria-hidden="true" />
@@ -46,9 +60,11 @@ export default function Hero() {
             </div>
           </div>
 
-          <div className="ha4 flex justify-center items-center min-w-0">
-            <HeroModel />
-          </div>
+          {showModel && (
+            <div className="ha4 flex justify-center items-center min-w-0">
+              <HeroModel />
+            </div>
+          )}
         </div>
       </div>
     </section>

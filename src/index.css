@@ -470,7 +470,35 @@ body,
   }
 
   .hero-model-shell {
+    display: none;
     overflow: hidden;
+  }
+
+  .hero-actions {
+    width: 100%;
+    max-width: min(100%, calc(100vw - 3.3rem));
+  }
+
+  .hero-actions .btn-primary,
+  .hero-actions .btn-secondary {
+    flex: 1 1 0;
+    min-width: 0;
+    justify-content: center;
+    padding: 10px clamp(10px, 3.4vw, 16px);
+    font-size: .82rem;
+    white-space: nowrap;
+  }
+
+  .hero-actions .hero-services-cta {
+    gap: 7px;
+    padding-right: clamp(10px, 3.4vw, 16px);
+  }
+
+  .hero-actions .hero-services-cta svg {
+    width: 14px;
+    height: 14px;
+    flex-basis: 14px;
+    margin-right: 0;
   }
 
   .btn-primary,
@@ -545,10 +573,16 @@ body,
 }
 .hero-services-cta {
   gap: 10px;
-  padding-right: 36px;
+  padding-right: 32px;
+}
+.hero-services-cta svg {
+  width: 17px;
+  height: 17px;
+  flex: 0 0 17px;
+  margin-right: 4px;
 }
 .hero-services-cta:hover svg {
-  transform: translateX(1px);
+  transform: translateX(4px);
 }
 .btn-secondary {
   display: inline-flex; align-items: center; gap: 8px;
