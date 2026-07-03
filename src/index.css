@@ -140,6 +140,31 @@ body,
   border-radius: 18px;
 }
 
+@keyframes cardLightSweep {
+  from {
+    background-position: -70% 0, 18% 0%, 100% 18%, 0 0, 0 0;
+  }
+  to {
+    background-position: 170% 0, 18% 0%, 100% 18%, 0 0, 0 0;
+  }
+}
+
+.glass-card {
+  background:
+    linear-gradient(105deg, transparent 24%, rgba(255,255,255,.08) 42%, rgba(255,255,255,.34) 50%, rgba(255,255,255,.08) 58%, transparent 76%),
+    radial-gradient(circle at 18% 0%, rgba(101,213,255,.24), transparent 34%),
+    radial-gradient(circle at 100% 18%, rgba(45,191,159,.15), transparent 36%),
+    linear-gradient(135deg, rgba(29,83,122,.64), rgba(11,42,72,.56) 46%, rgba(18,34,76,.68)),
+    linear-gradient(180deg, rgba(255,255,255,.22), rgba(255,255,255,.035));
+  background-repeat: no-repeat;
+  background-size: 58% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100%;
+  background-position: -70% 0, 18% 0%, 100% 18%, 0 0, 0 0;
+}
+
+.glass-card:hover {
+  animation: cardLightSweep .82s ease;
+}
+
 .hero-stage {
   border-radius: 26px;
   padding: clamp(1.15rem, 2.2vw, 2rem);
@@ -485,7 +510,7 @@ body,
   position: relative; overflow: hidden; isolation: isolate;
   background: linear-gradient(135deg, rgba(0,161,240,.82), rgba(0,112,184,.62)); color: #fff;
   font-weight: 600; font-size: .9375rem;
-  padding: 13px 28px; border-radius: 999px; border: 1px solid rgba(190,235,255,.46);
+  padding: 13px 30px 13px 28px; border-radius: 999px; border: 1px solid rgba(190,235,255,.46);
   text-decoration: none; cursor: pointer;
   backdrop-filter: blur(16px) saturate(1.35);
   -webkit-backdrop-filter: blur(16px) saturate(1.35);
