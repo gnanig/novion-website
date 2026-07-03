@@ -414,6 +414,19 @@ body,
 }
 
 @media (max-width: 767px) {
+  .hero-atmosphere {
+    min-height: auto !important;
+    height: auto !important;
+    align-items: flex-start;
+    padding-top: 104px !important;
+    padding-bottom: 28px;
+  }
+
+  .hero-content {
+    padding-top: .6rem;
+    padding-bottom: 0;
+  }
+
   .hero-stage {
     width: min(100%, calc(100vw - 1.5rem));
     max-width: calc(100vw - 1.5rem);

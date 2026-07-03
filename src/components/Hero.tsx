@@ -25,7 +25,7 @@ export default function Hero() {
     >
       <HeroWave />
 
-      <div className="relative z-[2] max-w-7xl mx-auto px-3 sm:px-8 w-full py-8">
+      <div className="hero-content relative z-[2] max-w-7xl mx-auto px-3 sm:px-8 w-full py-8">
         <div className="glass-panel hero-stage">
           <div className="hero-copy-panel min-w-0">
             <div className="ha1 inline-flex items-center gap-[9px] px-4 py-[7px] rounded-full border border-white/25 bg-white/10 shadow-[0_10px_30px_rgba(0,0,0,.12)] mb-5">
