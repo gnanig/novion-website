@@ -1,3 +1,4 @@
+import { FaCircleArrowRight } from 'react-icons/fa6'
 import HeroWave from './HeroWave'
 import HeroModel from './HeroModel'
 
@@ -39,9 +40,7 @@ export default function Hero() {
             <div className="ha5 flex flex-col sm:flex-row gap-[14px] items-start sm:items-center">
               <a href="#services" className="btn-primary">
                 Explore Services
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" aria-hidden="true">
-                  <path d="M5 12h14" /><path d="m12 5 7 7-7 7" />
-                </svg>
+                <FaCircleArrowRight aria-hidden="true" />
               </a>
               <a href="#contact" className="btn-secondary">Get in Touch</a>
             </div>

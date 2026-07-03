@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { ChevronDown } from 'lucide-react'
-import SocialLinks from './SocialLinks'
+import ContactSocialLinks from './ContactSocialLinks'
 
 type Status = 'idle' | 'loading' | 'success' | 'error'
 
@@ -99,48 +99,52 @@ export default function Contact() {
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div className="glass-card group flex items-center gap-4 px-[22px] py-[18px] rounded-[14px] transition-all duration-300 hover:border-white/50 hover:-translate-y-0.5">
-                  <div aria-hidden="true" className="w-[38px] h-[38px] rounded-[10px] flex items-center justify-center flex-shrink-0 bg-white/52 border border-white/60">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={iconColor} strokeWidth="2" strokeLinecap="round">
-                      <rect width="20" height="16" x="2" y="4" rx="2" /><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
-                    </svg>
+              <div className="grid grid-cols-1 sm:grid-cols-[minmax(0,1fr)_minmax(190px,0.78fr)] gap-4 items-stretch">
+                <div className="flex flex-col gap-4 min-w-0">
+                  <div className="glass-card group flex items-center gap-4 px-[22px] py-[18px] rounded-[14px] transition-all duration-300 hover:border-white/50 hover:-translate-y-0.5">
+                    <div aria-hidden="true" className="w-[38px] h-[38px] rounded-[10px] flex items-center justify-center flex-shrink-0 bg-white/52 border border-white/60">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={iconColor} strokeWidth="2" strokeLinecap="round">
+                        <rect width="20" height="16" x="2" y="4" rx="2" /><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+                      </svg>
+                    </div>
+                    <div className="min-w-0">
+                      <p className="text-[0.72rem] font-bold tracking-[.08em] uppercase text-[#7895A8] m-0 mb-0.5">Email</p>
+                      <a
+                        href="mailto:info@noviontec.com"
+                        target="_blank"
+                        rel="noreferrer"
+                        className="text-[0.9rem] font-semibold text-n-blue no-underline break-words"
+                      >
+                        info@noviontec.com
+                      </a>
+                    </div>
                   </div>
-                  <div className="min-w-0">
-                    <p className="text-[0.72rem] font-bold tracking-[.08em] uppercase text-[#7895A8] m-0 mb-0.5">Email</p>
-                    <a href="mailto:info@noviontec.com" className="text-[0.9rem] font-semibold text-n-blue no-underline break-words">
-                      info@noviontec.com
-                    </a>
+
+                  <div className="glass-card flex items-center gap-4 px-[22px] py-[18px] rounded-[14px]">
+                    <div aria-hidden="true" className="w-[38px] h-[38px] rounded-[10px] flex items-center justify-center flex-shrink-0 bg-white/52 border border-white/60">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={iconColor} strokeWidth="2" strokeLinecap="round">
+                        <circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" />
+                      </svg>
+                    </div>
+                    <div className="min-w-0">
+                      <p className="text-[0.72rem] font-bold tracking-[.08em] uppercase text-[#7895A8] m-0 mb-0.5">
+                        Response Time
+                      </p>
+                      <p className="text-[0.9rem] font-semibold text-n-dark m-0">
+                        Typically Within <span className="text-n-blue">24 hours</span>
+                      </p>
+                    </div>
                   </div>
                 </div>
 
-                <div className="glass-card flex items-center gap-4 px-[22px] py-[18px] rounded-[14px]">
-                  <div aria-hidden="true" className="w-[38px] h-[38px] rounded-[10px] flex items-center justify-center flex-shrink-0 bg-white/52 border border-white/60">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={iconColor} strokeWidth="2" strokeLinecap="round">
-                      <circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" />
-                    </svg>
-                  </div>
-                  <div className="min-w-0">
+                <div className="glass-card contact-social-card flex h-full flex-col justify-start gap-4 px-[22px] pt-4 pb-3 rounded-[14px] min-w-0">
+                  <div>
                     <p className="text-[0.72rem] font-bold tracking-[.08em] uppercase text-[#7895A8] m-0 mb-0.5">
-                      Response Time
-                    </p>
-                    <p className="text-[0.9rem] font-semibold text-n-dark m-0">
-                      Typically Within <span className="text-n-blue">24 hours</span>
+                      Social
                     </p>
                   </div>
+                  <ContactSocialLinks />
                 </div>
-              </div>
-
-              <div className="glass-card flex items-center justify-between gap-4 px-[22px] py-[18px] rounded-[14px]">
-                <div>
-                  <p className="text-[0.72rem] font-bold tracking-[.08em] uppercase text-[#7895A8] m-0 mb-0.5">
-                    Social
-                  </p>
-                  <p className="text-[0.9rem] font-semibold text-n-dark m-0">
-                    Connect with Novion
-                  </p>
-                </div>
-                <SocialLinks />
               </div>
             </div>
           </div>

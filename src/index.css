@@ -471,8 +471,18 @@ body,
 }
 
 /* Buttons */
+@keyframes buttonShine {
+  from {
+    left: -70%;
+  }
+  to {
+    left: 130%;
+  }
+}
+
 .btn-primary {
   display: inline-flex; align-items: center; gap: 8px;
+  position: relative; overflow: hidden; isolation: isolate;
   background: linear-gradient(135deg, rgba(0,161,240,.82), rgba(0,112,184,.62)); color: #fff;
   font-weight: 600; font-size: .9375rem;
   padding: 13px 28px; border-radius: 999px; border: 1px solid rgba(190,235,255,.46);
@@ -482,6 +492,34 @@ body,
   transition: background .2s, transform .18s, box-shadow .2s, border-color .2s;
   box-shadow: 0 10px 28px rgba(0,161,240,.28), inset 0 1px 0 rgba(255,255,255,.26);
 }
+.btn-primary::before,
+.btn-secondary::before,
+.btn-outline::before {
+  content: '';
+  position: absolute;
+  top: -42%;
+  bottom: -42%;
+  left: -70%;
+  width: 42%;
+  z-index: 1;
+  pointer-events: none;
+  transform: skewX(-24deg);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255,255,255,.16),
+    rgba(255,255,255,.72),
+    rgba(255,255,255,.18),
+    transparent
+  );
+  opacity: 0;
+}
+.btn-primary:hover::before,
+.btn-secondary:hover::before,
+.btn-outline:hover::before {
+  opacity: 1;
+  animation: buttonShine .72s ease;
+}
 .btn-primary:hover {
   transform: translateY(-2px);
   border-color: rgba(220,246,255,.78);
@@ -489,12 +527,15 @@ body,
 }
 .btn-primary svg {
   transition: transform .22s ease;
+  position: relative;
+  z-index: 2;
 }
 .btn-primary:hover svg {
   transform: translateX(4px);
 }
 .btn-secondary {
   display: inline-flex; align-items: center; gap: 8px;
+  position: relative; overflow: hidden; isolation: isolate;
   background: linear-gradient(135deg, rgba(53,199,255,.76), rgba(39,108,172,.58)); color: #fff;
   font-weight: 600; font-size: .9375rem;
   padding: 13px 28px; border-radius: 999px; border: 1px solid rgba(203,239,255,.44);
@@ -519,6 +560,7 @@ body,
 }
 .btn-outline {
   display: inline-flex; align-items: center; gap: 8px;
+  position: relative; overflow: hidden; isolation: isolate;
   background: linear-gradient(135deg, rgba(255,255,255,.22), rgba(215,231,240,.12)); color: #fff;
   font-weight: 500; font-size: .9375rem;
   padding: 12px 28px; border-radius: 999px;
@@ -577,6 +619,167 @@ body,
   width: 38px;
   height: 38px;
   background: linear-gradient(135deg, rgba(255,255,255,.1), rgba(101,213,255,.08));
+}
+
+.contact-social-card {
+  overflow: visible;
+}
+
+.contact-socials {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 26px;
+  min-height: 92px;
+}
+
+.contact-social-item {
+  --social-current: #65D5FF;
+  --social-brand: #00A1F0;
+  --social-brand-dark: #183B56;
+  --social-glow: rgba(101,213,255,.46);
+  position: relative;
+  width: 88px;
+  cursor: pointer;
+  transition: filter .22s ease;
+}
+
+.contact-social-linkedin {
+  --social-brand: #0A66C2;
+  --social-brand-dark: #004182;
+}
+
+.contact-social-whatsapp {
+  --social-brand: #25D366;
+  --social-brand-dark: #128C7E;
+}
+
+.contact-social-icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 9px;
+  position: relative;
+  width: 88px;
+  color: var(--social-current);
+  text-decoration: none;
+  outline: none;
+}
+
+.contact-social-item:hover,
+.contact-social-item:has(.contact-social-icon:focus-visible) {
+  --social-current: var(--social-brand);
+  --social-glow: color-mix(in srgb, var(--social-brand) 70%, transparent);
+}
+
+.contact-social-layer {
+  position: relative;
+  display: block;
+  width: 66px;
+  height: 66px;
+  flex-shrink: 0;
+  border: 3px solid var(--social-current);
+  border-radius: 50%;
+  transition: transform .3s ease, border-color .3s ease, box-shadow .3s ease;
+  box-shadow:
+    0 0 8px rgba(101,213,255,.42),
+    0 0 16px rgba(0,161,240,.2),
+    inset 0 0 12px rgba(101,213,255,.1);
+}
+
+.contact-social-icon:hover .contact-social-layer,
+.contact-social-icon:focus-visible .contact-social-layer {
+  transform: rotate(-35deg) skew(20deg);
+  box-shadow:
+    0 0 28px var(--social-glow),
+    0 0 42px color-mix(in srgb, var(--social-brand) 52%, transparent),
+    inset 0 0 18px color-mix(in srgb, var(--social-brand) 24%, transparent);
+}
+
+.contact-social-layer > span {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 1px solid var(--social-current);
+  border-radius: 50%;
+  transition: all .3s ease;
+}
+
+.contact-social-icon:hover .contact-social-layer > span,
+.contact-social-icon:focus-visible .contact-social-layer > span {
+  box-shadow: -1px 1px 3px var(--social-current);
+}
+
+.contact-social-icon:hover .contact-social-layer > span:nth-child(1),
+.contact-social-icon:focus-visible .contact-social-layer > span:nth-child(1) {
+  opacity: .2;
+}
+
+.contact-social-icon:hover .contact-social-layer > span:nth-child(2),
+.contact-social-icon:focus-visible .contact-social-layer > span:nth-child(2) {
+  opacity: .4;
+  transform: translate(5px, -5px);
+}
+
+.contact-social-icon:hover .contact-social-layer > span:nth-child(3),
+.contact-social-icon:focus-visible .contact-social-layer > span:nth-child(3) {
+  opacity: .6;
+  transform: translate(10px, -10px);
+}
+
+.contact-social-icon:hover .contact-social-layer > span:nth-child(4),
+.contact-social-icon:focus-visible .contact-social-layer > span:nth-child(4) {
+  opacity: .8;
+  transform: translate(15px, -15px);
+}
+
+.contact-social-icon:hover .contact-social-symbol,
+.contact-social-icon:focus-visible .contact-social-symbol {
+  opacity: 1;
+  transform: translate(20px, -20px);
+}
+
+.contact-social-symbol {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  background: linear-gradient(135deg, rgba(101,213,255,.86), rgba(10,49,75,.92));
+  box-shadow: inset 0 0 12px rgba(255,255,255,.08);
+  transition: background .3s ease, box-shadow .3s ease;
+}
+
+.contact-social-icon:hover .contact-social-symbol,
+.contact-social-icon:focus-visible .contact-social-symbol {
+  background: linear-gradient(135deg, var(--social-brand), var(--social-brand-dark));
+}
+
+.contact-social-symbol svg {
+  width: 30px;
+  height: 30px;
+  fill: currentColor;
+}
+
+.contact-social-label {
+  color: var(--social-current);
+  font-size: .86rem;
+  font-weight: 700;
+  line-height: 1.1;
+  text-shadow: 0 0 7px rgba(101,213,255,.34);
+  transition: color .22s ease, text-shadow .22s ease;
+}
+
+.contact-social-icon:hover .contact-social-label,
+.contact-social-icon:focus-visible .contact-social-label {
+  text-shadow: 0 0 12px var(--social-glow);
+}
+
+@media (max-width: 640px) {
+  .contact-socials {
+    justify-content: flex-start;
+    min-height: 102px;
+  }
 }
 
 .section-divider {
