@@ -38,7 +38,7 @@ export default function Hero() {
             </p>
 
             <div className="ha5 flex flex-col sm:flex-row gap-[14px] items-start sm:items-center">
-              <a href="#services" className="btn-primary">
+              <a href="#services" className="btn-primary hero-services-cta">
                 Explore Services
                 <FaCircleArrowRight aria-hidden="true" />
               </a>

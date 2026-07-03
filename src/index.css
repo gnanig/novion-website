@@ -543,6 +543,13 @@ body,
 .btn-primary:hover svg {
   transform: translateX(4px);
 }
+.hero-services-cta {
+  gap: 10px;
+  padding-right: 36px;
+}
+.hero-services-cta:hover svg {
+  transform: translateX(1px);
+}
 .btn-secondary {
   display: inline-flex; align-items: center; gap: 8px;
   position: relative; overflow: hidden; isolation: isolate;
