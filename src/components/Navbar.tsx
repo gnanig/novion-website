@@ -28,27 +28,27 @@ export default function Navbar() {
       aria-label="Main navigation"
       className={`fixed left-1/2 z-50 -translate-x-1/2 transition-all duration-300 ${
         scrolled
-          ? 'top-[10px] py-2 rounded-2xl border border-white/45 shadow-[0_18px_52px_rgba(0,42,78,0.16)]'
-          : 'top-[14px] py-2 rounded-2xl border border-white/40 shadow-[0_16px_48px_rgba(0,42,78,0.14)]'
+          ? 'top-[10px] py-2 rounded-2xl border border-white/70 shadow-[0_18px_52px_rgba(0,42,78,0.14)]'
+          : 'top-[14px] py-2 rounded-2xl border border-white/65 shadow-[0_16px_48px_rgba(0,42,78,0.12)]'
       }`}
       style={{
         width: 'calc(100vw - 2rem)',
         maxWidth: '1180px',
         background: scrolled
-          ? 'radial-gradient(circle at 50% 0%, rgba(155,228,255,0.26), transparent 42%), linear-gradient(90deg, rgba(151,184,207,0.58), rgba(208,229,240,0.76) 48%, rgba(151,184,207,0.58))'
-          : 'radial-gradient(circle at 50% 0%, rgba(155,228,255,0.3), transparent 44%), linear-gradient(90deg, rgba(169,202,220,0.64), rgba(224,240,247,0.8) 48%, rgba(169,202,220,0.64))',
-        backdropFilter: 'blur(38px) saturate(1.55) contrast(1.03)',
-        WebkitBackdropFilter: 'blur(38px) saturate(1.55) contrast(1.03)',
+          ? 'radial-gradient(circle at 18% 0%, rgba(0,161,240,0.18), transparent 32%), radial-gradient(circle at 82% 0%, rgba(45,191,159,0.12), transparent 34%), linear-gradient(90deg, rgba(242,250,254,0.9), rgba(255,255,255,0.94) 46%, rgba(232,247,254,0.9))'
+          : 'radial-gradient(circle at 18% 0%, rgba(0,161,240,0.2), transparent 34%), radial-gradient(circle at 82% 0%, rgba(45,191,159,0.13), transparent 36%), linear-gradient(90deg, rgba(246,252,255,0.88), rgba(255,255,255,0.92) 46%, rgba(235,249,255,0.88))',
+        backdropFilter: 'blur(34px) saturate(1.42) contrast(1.02)',
+        WebkitBackdropFilter: 'blur(34px) saturate(1.42) contrast(1.02)',
         boxShadow: scrolled
-          ? '0 20px 58px rgba(0,42,78,0.18), inset 0 1px 0 rgba(255,255,255,0.72), inset 0 -18px 42px rgba(0,82,130,0.08)'
-          : '0 18px 54px rgba(0,42,78,0.16), inset 0 1px 0 rgba(255,255,255,0.78), inset 0 -18px 42px rgba(0,82,130,0.08)',
+          ? '0 20px 58px rgba(0,42,78,0.16), 0 0 0 1px rgba(0,161,240,0.08), inset 0 1px 0 rgba(255,255,255,0.88), inset 0 -16px 38px rgba(0,161,240,0.08)'
+          : '0 18px 54px rgba(0,42,78,0.14), 0 0 0 1px rgba(0,161,240,0.07), inset 0 1px 0 rgba(255,255,255,0.9), inset 0 -16px 38px rgba(0,161,240,0.07)',
       }}
     >
       <div className="mx-auto px-5 sm:px-6 flex items-center justify-between">
         <a
           href="#home"
           aria-label="Novion Technologies home"
-          className="inline-flex items-center"
+          className="inline-flex items-center rounded-xl bg-white/72 px-2.5 py-1 shadow-[0_10px_26px_rgba(0,42,78,0.08),inset_0_1px_0_rgba(255,255,255,0.9)] ring-1 ring-white/70 backdrop-blur-xl"
         >
           {logoError ? (
             <span style={{ fontFamily: 'Manrope, sans-serif', fontWeight: 800, color: '#13243A', fontSize: '1.1rem', letterSpacing: '-.01em' }}>
