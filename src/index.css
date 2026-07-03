@@ -137,32 +137,17 @@ body,
 }
 
 .glass-card {
+  --card-x: 50%;
+  --card-y: 50%;
   border-radius: 18px;
 }
 
-@keyframes cardLightSweep {
-  from {
-    background-position: -70% 0, 18% 0%, 100% 18%, 0 0, 0 0;
-  }
-  to {
-    background-position: 170% 0, 18% 0%, 100% 18%, 0 0, 0 0;
-  }
-}
-
-.glass-card {
+.glass-card[data-card-active='true']::before {
   background:
-    linear-gradient(105deg, transparent 24%, rgba(255,255,255,.08) 42%, rgba(255,255,255,.34) 50%, rgba(255,255,255,.08) 58%, transparent 76%),
-    radial-gradient(circle at 18% 0%, rgba(101,213,255,.24), transparent 34%),
-    radial-gradient(circle at 100% 18%, rgba(45,191,159,.15), transparent 36%),
-    linear-gradient(135deg, rgba(29,83,122,.64), rgba(11,42,72,.56) 46%, rgba(18,34,76,.68)),
-    linear-gradient(180deg, rgba(255,255,255,.22), rgba(255,255,255,.035));
-  background-repeat: no-repeat;
-  background-size: 58% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100%;
-  background-position: -70% 0, 18% 0%, 100% 18%, 0 0, 0 0;
-}
-
-.glass-card:hover {
-  animation: cardLightSweep .82s ease;
+    radial-gradient(circle 220px at var(--card-x) var(--card-y), rgba(190,235,255,.34), rgba(101,213,255,.16) 34%, transparent 68%),
+    linear-gradient(120deg, rgba(255,255,255,.24), rgba(255,255,255,.055) 30%, transparent 52%),
+    linear-gradient(180deg, rgba(255,255,255,.08), transparent 42%);
+  opacity: .98;
 }
 
 .hero-stage {

@@ -18,6 +18,7 @@ export default function App() {
 
   useEffect(() => {
     let activeGrid: HTMLElement | null = null
+    let activeCard: HTMLElement | null = null
 
     const updateGridGlow = (event: PointerEvent) => {
       if (!(event.target instanceof Element)) return
@@ -25,7 +26,9 @@ export default function App() {
       const target = event.target.closest<HTMLElement>('.hero-atmosphere, .glass-section')
       if (!target) {
         activeGrid?.removeAttribute('data-grid-active')
+        activeCard?.removeAttribute('data-card-active')
         activeGrid = null
+        activeCard = null
         return
       }
 
@@ -39,11 +42,31 @@ export default function App() {
       const rect = target.getBoundingClientRect()
       target.style.setProperty('--grid-x', `${event.clientX - rect.left}px`)
       target.style.setProperty('--grid-y', `${event.clientY - rect.top}px`)
+
+      const card = event.target.closest<HTMLElement>('.glass-card')
+      if (!card) {
+        activeCard?.removeAttribute('data-card-active')
+        activeCard = null
+        return
+      }
+
+      if (activeCard && activeCard !== card) {
+        activeCard.removeAttribute('data-card-active')
+      }
+
+      activeCard = card
+      card.setAttribute('data-card-active', 'true')
+
+      const cardRect = card.getBoundingClientRect()
+      card.style.setProperty('--card-x', `${event.clientX - cardRect.left}px`)
+      card.style.setProperty('--card-y', `${event.clientY - cardRect.top}px`)
     }
 
     const clearGridGlow = () => {
       activeGrid?.removeAttribute('data-grid-active')
+      activeCard?.removeAttribute('data-card-active')
       activeGrid = null
+      activeCard = null
     }
 
     window.addEventListener('pointermove', updateGridGlow, { passive: true })
