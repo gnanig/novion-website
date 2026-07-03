@@ -28,27 +28,27 @@ export default function Navbar() {
       aria-label="Main navigation"
       className={`fixed left-1/2 z-50 -translate-x-1/2 transition-all duration-300 ${
         scrolled
-          ? 'top-[10px] py-2 rounded-2xl border border-white/70 shadow-[0_18px_52px_rgba(0,42,78,0.14)]'
-          : 'top-[14px] py-2 rounded-2xl border border-white/65 shadow-[0_16px_48px_rgba(0,42,78,0.12)]'
+          ? 'top-[10px] py-2 rounded-2xl border border-white/75 shadow-[0_18px_52px_rgba(0,42,78,0.12)]'
+          : 'top-[14px] py-2 rounded-2xl border border-white/70 shadow-[0_16px_48px_rgba(0,42,78,0.1)]'
       }`}
       style={{
         width: 'calc(100vw - 2rem)',
         maxWidth: '1180px',
         background: scrolled
-          ? 'radial-gradient(circle at 18% 0%, rgba(0,161,240,0.18), transparent 32%), radial-gradient(circle at 82% 0%, rgba(45,191,159,0.12), transparent 34%), linear-gradient(90deg, rgba(242,250,254,0.9), rgba(255,255,255,0.94) 46%, rgba(232,247,254,0.9))'
-          : 'radial-gradient(circle at 18% 0%, rgba(0,161,240,0.2), transparent 34%), radial-gradient(circle at 82% 0%, rgba(45,191,159,0.13), transparent 36%), linear-gradient(90deg, rgba(246,252,255,0.88), rgba(255,255,255,0.92) 46%, rgba(235,249,255,0.88))',
-        backdropFilter: 'blur(34px) saturate(1.42) contrast(1.02)',
-        WebkitBackdropFilter: 'blur(34px) saturate(1.42) contrast(1.02)',
+          ? 'radial-gradient(circle at 9% 0%, rgba(0,161,240,0.15), transparent 30%), radial-gradient(circle at 92% 0%, rgba(155,228,255,0.18), transparent 34%), linear-gradient(90deg, rgba(250,254,255,0.72), rgba(238,249,254,0.64) 46%, rgba(250,254,255,0.72))'
+          : 'radial-gradient(circle at 9% 0%, rgba(0,161,240,0.13), transparent 32%), radial-gradient(circle at 92% 0%, rgba(155,228,255,0.17), transparent 36%), linear-gradient(90deg, rgba(250,254,255,0.66), rgba(235,248,254,0.58) 46%, rgba(250,254,255,0.66))',
+        backdropFilter: 'blur(34px) saturate(1.35) contrast(1.08) brightness(1.08)',
+        WebkitBackdropFilter: 'blur(34px) saturate(1.35) contrast(1.08) brightness(1.08)',
         boxShadow: scrolled
-          ? '0 20px 58px rgba(0,42,78,0.16), 0 0 0 1px rgba(0,161,240,0.08), inset 0 1px 0 rgba(255,255,255,0.88), inset 0 -16px 38px rgba(0,161,240,0.08)'
-          : '0 18px 54px rgba(0,42,78,0.14), 0 0 0 1px rgba(0,161,240,0.07), inset 0 1px 0 rgba(255,255,255,0.9), inset 0 -16px 38px rgba(0,161,240,0.07)',
+          ? '0 20px 58px rgba(0,42,78,0.14), 0 0 0 1px rgba(0,161,240,0.1), inset 0 1px 0 rgba(255,255,255,0.92), inset 0 -16px 38px rgba(0,161,240,0.05)'
+          : '0 18px 54px rgba(0,42,78,0.12), 0 0 0 1px rgba(0,161,240,0.09), inset 0 1px 0 rgba(255,255,255,0.9), inset 0 -16px 38px rgba(0,161,240,0.05)',
       }}
     >
       <div className="mx-auto px-5 sm:px-6 flex items-center justify-between">
         <a
           href="#home"
           aria-label="Novion Technologies home"
-          className="inline-flex items-center rounded-xl bg-white/72 px-2.5 py-1 shadow-[0_10px_26px_rgba(0,42,78,0.08),inset_0_1px_0_rgba(255,255,255,0.9)] ring-1 ring-white/70 backdrop-blur-xl"
+          className="inline-flex items-center"
         >
           {logoError ? (
             <span style={{ fontFamily: 'Manrope, sans-serif', fontWeight: 800, color: '#13243A', fontSize: '1.1rem', letterSpacing: '-.01em' }}>
@@ -69,7 +69,7 @@ export default function Navbar() {
             <a
               key={link.href}
               href={link.href}
-              className="relative text-[0.94rem] font-bold text-[#10243A] no-underline tracking-[0.01em] transition-colors duration-200 hover:text-[#00589A] after:absolute after:left-0 after:-bottom-1 after:h-0.5 after:w-0 after:rounded-full after:bg-[#00589A] after:transition-all after:duration-200 hover:after:w-full"
+              className="relative text-[0.94rem] font-bold text-[#071827] no-underline tracking-[0.01em] transition-colors duration-200 hover:text-[#0070B8] after:absolute after:left-0 after:-bottom-1 after:h-0.5 after:w-0 after:rounded-full after:bg-[#00A1F0] after:transition-all after:duration-200 hover:after:w-full"
             >
               {link.label}
             </a>
@@ -107,12 +107,12 @@ export default function Navbar() {
 
       {menuOpen && (
         <div id="mobile-menu" className="px-4 pb-3 pt-2 md:hidden">
-          <div className="border border-white/55 rounded-[14px] p-2 bg-[radial-gradient(circle_at_18%_0%,rgba(155,228,255,.36),transparent_36%),linear-gradient(135deg,rgba(220,238,246,.8),rgba(157,190,211,.64))] shadow-[0_18px_48px_rgba(0,42,78,.2),inset_0_1px_0_rgba(255,255,255,.66)] backdrop-blur-[32px]">
+          <div className="border border-white/70 rounded-[14px] p-2 bg-[radial-gradient(circle_at_18%_0%,rgba(0,161,240,.18),transparent_36%),linear-gradient(135deg,rgba(250,254,255,.82),rgba(235,248,254,.72))] shadow-[0_18px_48px_rgba(0,42,78,.16),inset_0_1px_0_rgba(255,255,255,.88)] backdrop-blur-[32px]">
             {navLinks.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
-                className="block px-4 py-[11px] text-[#10243A] no-underline rounded-[10px] text-[0.95rem] font-semibold hover:bg-white/45 hover:text-[#00589A]"
+                className="block px-4 py-[11px] text-[#071827] no-underline rounded-[10px] text-[0.95rem] font-semibold hover:bg-white/50 hover:text-[#0070B8]"
                 onClick={closeMenu}
               >
                 {link.label}
