@@ -69,7 +69,7 @@ export default function Navbar() {
             <a
               key={link.href}
               href={link.href}
-              className="relative text-[0.94rem] font-bold text-[#071827] no-underline tracking-[0.01em] transition-colors duration-200 hover:text-[#0070B8] after:absolute after:left-0 after:-bottom-1 after:h-0.5 after:w-0 after:rounded-full after:bg-[#00A1F0] after:transition-all after:duration-200 hover:after:w-full"
+              className="relative text-[0.94rem] font-bold text-[#071827] no-underline tracking-[0.01em] transition-colors duration-200 hover:text-[#003F73] after:absolute after:left-0 after:-bottom-1 after:h-0.5 after:w-0 after:rounded-full after:bg-[#005FA8] after:transition-all after:duration-200 hover:after:w-full"
             >
               {link.label}
             </a>
@@ -79,7 +79,7 @@ export default function Navbar() {
         <div className="flex items-center gap-[10px]">
           <a
             href="#contact"
-            className="nav-cta btn-secondary"
+            className="nav-cta navbar-cta btn-secondary"
           >
             Get Started
           </a>
@@ -112,7 +112,7 @@ export default function Navbar() {
               <a
                 key={link.href}
                 href={link.href}
-                className="block px-4 py-[11px] text-[#071827] no-underline rounded-[10px] text-[0.95rem] font-semibold hover:bg-white/50 hover:text-[#0070B8]"
+                className="block px-4 py-[11px] text-[#071827] no-underline rounded-[10px] text-[0.95rem] font-semibold hover:bg-[rgba(0,95,168,.1)] hover:text-[#003F73]"
                 onClick={closeMenu}
               >
                 {link.label}
@@ -120,7 +120,7 @@ export default function Navbar() {
             ))}
             <a
               href="#contact"
-              className="btn-secondary mt-1.5 w-full justify-center"
+              className="navbar-cta btn-secondary mt-1.5 w-full justify-center"
               onClick={closeMenu}
             >
               Get Started

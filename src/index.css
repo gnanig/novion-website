@@ -638,6 +638,23 @@ body,
   border-color: rgba(220,246,255,.72);
   box-shadow: 0 16px 38px rgba(0,111,184,.34), 0 0 22px rgba(53,199,255,.2), inset 0 1px 0 rgba(255,255,255,.34);
 }
+.navbar-cta {
+  background: linear-gradient(135deg, #0069B5, #003F73);
+  border-color: rgba(255,255,255,.72);
+  font-weight: 800;
+  box-shadow:
+    0 12px 30px rgba(0,63,115,.34),
+    0 0 0 1px rgba(0,63,115,.18),
+    inset 0 1px 0 rgba(255,255,255,.34);
+}
+.navbar-cta:hover {
+  background: linear-gradient(135deg, #0087D8, #004F8E);
+  border-color: rgba(255,255,255,.9);
+  box-shadow:
+    0 16px 38px rgba(0,63,115,.42),
+    0 0 24px rgba(0,161,240,.24),
+    inset 0 1px 0 rgba(255,255,255,.42);
+}
 .nav-cta {
   display: none;
 }
