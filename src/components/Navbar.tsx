@@ -48,17 +48,17 @@ export default function Navbar() {
         <a
           href="#home"
           aria-label="Novion Technologies home"
-          className="inline-flex items-center"
+          className="navbar-logo-link inline-flex items-center"
         >
           {logoError ? (
-            <span style={{ fontFamily: 'Manrope, sans-serif', fontWeight: 800, color: '#13243A', fontSize: '1.1rem', letterSpacing: '-.01em' }}>
+            <span className="navbar-logo-fallback" style={{ fontFamily: 'Manrope, sans-serif', fontWeight: 800, color: '#13243A', fontSize: '1.1rem', letterSpacing: '-.01em' }}>
               novion <span className="text-n-blue">TECH</span>
             </span>
           ) : (
             <img
               src="/assets/logo.png"
               alt="Novion Technologies"
-              className="h-[46px] w-auto"
+              className="navbar-logo h-[46px] w-auto"
               onError={() => setLogoError(true)}
             />
           )}
