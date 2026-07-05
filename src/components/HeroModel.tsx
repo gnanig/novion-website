@@ -4,7 +4,7 @@ import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader.js'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 
-const modelUrl = new URL('../../assets/models/computer.glb', import.meta.url).href
+const modelUrl = new URL('../../assets/computer.glb', import.meta.url).href
 const logoUrl = '/assets/logo.png'
 const screenTint = '#D8E3EA'
 

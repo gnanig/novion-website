@@ -43,7 +43,7 @@ export default function App() {
       target.style.setProperty('--grid-x', `${event.clientX - rect.left}px`)
       target.style.setProperty('--grid-y', `${event.clientY - rect.top}px`)
 
-      const card = event.target.closest<HTMLElement>('.glass-card')
+      const card = event.target.closest<HTMLElement>('.glass-card, .statement-card')
       if (!card) {
         activeCard?.removeAttribute('data-card-active')
         activeCard = null

@@ -150,6 +150,30 @@ body,
   opacity: .98;
 }
 
+.statement-card {
+  --card-x: 50%;
+  --card-y: 50%;
+  position: relative;
+  isolation: isolate;
+}
+
+.statement-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background:
+    radial-gradient(circle 220px at var(--card-x) var(--card-y), rgba(190,235,255,.34), rgba(101,213,255,.16) 34%, transparent 68%),
+    linear-gradient(120deg, rgba(255,255,255,.2), rgba(255,255,255,.045) 30%, transparent 52%);
+  opacity: 0;
+  transition: opacity .18s ease;
+}
+
+.statement-card[data-card-active='true']::before {
+  opacity: .98;
+}
+
 .hero-stage {
   border-radius: 26px;
   padding: clamp(1.15rem, 2.2vw, 2rem);
