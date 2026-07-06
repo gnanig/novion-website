@@ -9,6 +9,8 @@ const navLinks = [
   { href: '#contact', label: 'Contact' },
 ]
 
+const sectionTopLinks = new Set(['#home', '#about', '#features', '#services', '#contact'])
+
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
@@ -20,7 +22,30 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  const closeMenu = () => setMenuOpen(false)
+  const scrollToSection = (href: string, event: React.MouseEvent<HTMLAnchorElement>) => {
+    if (!href.startsWith('#')) return
+    if (!sectionTopLinks.has(href)) {
+      setMenuOpen(false)
+      return
+    }
+
+    event.preventDefault()
+    const target = document.getElementById(href.slice(1))
+
+    if (!target) {
+      window.location.hash = href
+      return
+    }
+
+    const behavior: ScrollBehavior = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'
+
+    window.scrollTo({
+      top: target.getBoundingClientRect().top + window.scrollY,
+      behavior,
+    })
+    window.history.pushState(null, '', href)
+    setMenuOpen(false)
+  }
 
   return (
     <nav
@@ -49,6 +74,7 @@ export default function Navbar() {
           href="#home"
           aria-label="Novion Technologies home"
           className="navbar-logo-link inline-flex items-center"
+          onClick={(event) => scrollToSection('#home', event)}
         >
           {logoError ? (
             <span className="navbar-logo-fallback" style={{ fontFamily: 'Manrope, sans-serif', fontWeight: 800, color: '#13243A', fontSize: '1.1rem', letterSpacing: '-.01em' }}>
@@ -70,6 +96,7 @@ export default function Navbar() {
               key={link.href}
               href={link.href}
               className="relative text-[0.94rem] font-bold text-[#071827] no-underline tracking-[0.01em] transition-colors duration-200 hover:text-[#003F73] after:absolute after:left-0 after:-bottom-1 after:h-0.5 after:w-0 after:rounded-full after:bg-[#005FA8] after:transition-all after:duration-200 hover:after:w-full"
+              onClick={(event) => scrollToSection(link.href, event)}
             >
               {link.label}
             </a>
@@ -80,6 +107,7 @@ export default function Navbar() {
           <a
             href="#contact"
             className="nav-cta navbar-cta btn-secondary"
+            onClick={(event) => scrollToSection('#contact', event)}
           >
             Get Started
           </a>
@@ -113,7 +141,7 @@ export default function Navbar() {
                 key={link.href}
                 href={link.href}
                 className="block px-4 py-[11px] text-[#071827] no-underline rounded-[10px] text-[0.95rem] font-semibold hover:bg-[rgba(0,95,168,.1)] hover:text-[#003F73]"
-                onClick={closeMenu}
+                onClick={(event) => scrollToSection(link.href, event)}
               >
                 {link.label}
               </a>
@@ -121,7 +149,7 @@ export default function Navbar() {
             <a
               href="#contact"
               className="navbar-cta btn-secondary mt-1.5 w-full justify-center"
-              onClick={closeMenu}
+              onClick={(event) => scrollToSection('#contact', event)}
             >
               Get Started
             </a>

@@ -372,6 +372,111 @@ body,
     inset 0 -30px 70px rgba(0,8,18,.13);
 }
 
+.about-section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding-top: clamp(4.75rem, 8vh, 6rem);
+  padding-bottom: clamp(3rem, 6vh, 4.5rem);
+}
+
+.about-section-inner {
+  width: 100%;
+}
+
+.about-intro {
+  margin-bottom: clamp(1.65rem, 3.4vh, 2.25rem);
+}
+
+.about-card {
+  padding: clamp(1.45rem, 2vw, 1.85rem);
+}
+
+.about-cta {
+  margin-top: clamp(1.45rem, 3.2vh, 2.1rem);
+}
+
+@media (min-width: 768px) and (max-height: 850px) {
+  .about-section {
+    padding-top: 4.75rem;
+    padding-bottom: 2.75rem;
+  }
+
+  .about-intro {
+    margin-bottom: 1.6rem;
+  }
+
+  .about-card {
+    padding: 1.35rem;
+  }
+
+  .about-cta {
+    margin-top: 1.45rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .about-section {
+    min-height: auto;
+    display: block;
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+  }
+}
+
+.services-section {
+  min-height: 100vh;
+  padding-top: clamp(6.75rem, 13vh, 7.5rem);
+  padding-bottom: clamp(2.5rem, 5vh, 3.25rem);
+}
+
+.services-intro {
+  margin-bottom: clamp(2.15rem, 5.4vh, 3rem);
+}
+
+.service-card {
+  padding: clamp(1.75rem, 2.7vw, 2.25rem);
+}
+
+.service-icon {
+  margin-bottom: clamp(1.25rem, 2.4vh, 1.5rem);
+}
+
+.service-tags {
+  padding-top: clamp(1.35rem, 2.8vh, 1.75rem);
+}
+
+@media (min-width: 768px) and (max-height: 900px) {
+  .services-section {
+    padding-top: 6.75rem;
+    padding-bottom: 2.75rem;
+  }
+
+  .services-intro {
+    margin-bottom: 2rem;
+  }
+
+  .service-card {
+    padding: 1.75rem;
+  }
+
+  .service-icon {
+    margin-bottom: 1.15rem;
+  }
+
+  .service-tags {
+    padding-top: 1.35rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .services-section {
+    min-height: auto;
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+  }
+}
+
 .hero-model-shell {
   position: relative;
   width: min(840px, 108%);

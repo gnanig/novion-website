@@ -3,7 +3,7 @@ import { BookOpenCheck, Code2, GraduationCap, TrendingUp } from 'lucide-react'
 const iconProps = {
   size: 74,
   strokeWidth: 1.65,
-  color: '#00A1F0',
+  color: '#008FD8',
 }
 
 const features = [

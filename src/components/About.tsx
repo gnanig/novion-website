@@ -15,9 +15,9 @@ const cards = [
 
 export default function About() {
   return (
-    <section id="about" className="glass-section py-24 relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-8 relative z-[2]">
-        <div className="max-w-[600px] mx-auto text-center mb-16 reveal">
+    <section id="about" className="about-section glass-section py-24 relative overflow-hidden">
+      <div className="about-section-inner max-w-7xl mx-auto px-8 relative z-[2]">
+        <div className="about-intro max-w-[600px] mx-auto text-center mb-16 reveal">
           <span className="inline-block text-[0.72rem] font-bold tracking-[.16em] uppercase text-n-blue mb-[0.65rem]">
             About Novion
           </span>
@@ -36,7 +36,7 @@ export default function About() {
           {cards.map(({ label, text }) => (
             <div
               key={label}
-              className="glass-card rounded-[18px] p-9 transition-all duration-300 hover:-translate-y-1 hover:border-white/50"
+              className="about-card glass-card rounded-[18px] p-9 transition-all duration-300 hover:-translate-y-1 hover:border-white/50"
             >
               <p className="text-[0.7rem] font-bold tracking-[.15em] uppercase text-n-blue m-0 mb-[14px]">{label}</p>
               <p className="text-[1.0625rem] text-n-dark font-semibold leading-[1.65] m-0">{text}</p>
@@ -44,7 +44,7 @@ export default function About() {
           ))}
         </div>
 
-        <div className="text-center mt-[52px] reveal">
+        <div className="about-cta text-center mt-[52px] reveal">
           <a href="#contact" className="btn-primary">Work With Us</a>
         </div>
       </div>

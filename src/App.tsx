@@ -85,9 +85,9 @@ export default function App() {
       <Navbar />
       <Hero />
       <SectionDivider />
-      <StatementStrip />
-      <SectionDivider />
       <About />
+      <SectionDivider />
+      <StatementStrip />
       <SectionDivider />
       <Features />
       <SectionDivider />
