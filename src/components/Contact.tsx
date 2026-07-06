@@ -69,8 +69,8 @@ export default function Contact() {
   }
 
   return (
-    <section id="contact" className="nav-section glass-section py-24">
-      <div className="section-frame max-w-7xl mx-auto px-8">
+    <section id="contact" className="glass-section py-24">
+      <div className="max-w-7xl mx-auto px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
           <div className="reveal">
             <span className="inline-block text-[0.72rem] font-bold tracking-[.16em] uppercase text-n-blue mb-[0.65rem]">

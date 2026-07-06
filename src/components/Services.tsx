@@ -48,9 +48,9 @@ const services: ServiceCard[] = [
 
 export default function Services() {
   return (
-    <section id="services" className="nav-section glass-section py-24">
-      <div className="section-frame max-w-7xl mx-auto px-8">
-        <div className="section-intro text-center max-w-[560px] mx-auto mb-14 reveal">
+    <section id="services" className="glass-section py-24">
+      <div className="max-w-7xl mx-auto px-8">
+        <div className="text-center max-w-[560px] mx-auto mb-14 reveal">
           <span className="inline-block text-[0.72rem] font-bold tracking-[.16em] uppercase text-n-blue mb-[0.65rem]">
             What We Do
           </span>
