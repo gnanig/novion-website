@@ -22,7 +22,17 @@ body,
   max-width: 100%;
 }
 
+html {
+  --nav-anchor-offset: 92px;
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--nav-anchor-offset);
+}
+
 @media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
     transition-duration: 0.01ms !important;
@@ -370,6 +380,71 @@ body,
     0 0 0 1px rgba(255,255,255,.12) inset,
     inset 0 1px 0 rgba(255,255,255,.38),
     inset 0 -30px 70px rgba(0,8,18,.13);
+}
+
+.nav-section {
+  scroll-margin-top: var(--nav-anchor-offset);
+  padding-top: clamp(3.5rem, 7.4vh, 4.75rem);
+  padding-bottom: clamp(3.5rem, 7.4vh, 4.75rem);
+}
+
+.section-intro {
+  margin-bottom: clamp(2rem, 4.5vh, 3rem);
+}
+
+.section-action {
+  margin-top: clamp(2rem, 4.5vh, 2.75rem);
+}
+
+.about-section .about-cards .glass-card {
+  padding: clamp(1.5rem, 2.6vw, 2.15rem);
+}
+
+@media (min-width: 768px) and (max-height: 860px) {
+  html {
+    --nav-anchor-offset: 86px;
+  }
+
+  .nav-section {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+
+  .section-intro {
+    margin-bottom: 2rem;
+  }
+
+  .section-action {
+    margin-top: 2rem;
+  }
+
+  .about-section .section-intro h2 {
+    margin-bottom: .9rem;
+  }
+
+  .about-section .section-intro p {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  .about-section .about-cards {
+    gap: 1rem;
+  }
+
+  .about-section .about-cards .glass-card {
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 767px) {
+  html {
+    --nav-anchor-offset: 88px;
+  }
+
+  .nav-section {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
 }
 
 .hero-model-shell {

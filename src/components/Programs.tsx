@@ -17,8 +17,8 @@ const programs = [
 
 export default function Programs() {
   return (
-    <section id="programs" className="glass-section py-24">
-      <div className="max-w-7xl mx-auto px-8">
+    <section id="programs" className="nav-section glass-section py-24">
+      <div className="section-frame max-w-7xl mx-auto px-8">
         <div className="grid grid-cols-1 lg:grid-cols-[0.8fr_1.2fr] gap-10 items-start">
           <div className="reveal">
             <span className="inline-block text-[0.72rem] font-bold tracking-[.16em] uppercase text-n-blue mb-[0.65rem]">
