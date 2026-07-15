@@ -1,7 +1,7 @@
 const items = [
-  'Trusted Quality',
+  'Modern Software',
   'Precision Engineering',
-  'End-to-End Testing',
+  'AI-Ready Solutions',
   'Strategic Consulting',
   'Reliable Delivery',
 ]

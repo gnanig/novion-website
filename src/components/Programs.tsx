@@ -2,8 +2,8 @@ const programs = [
   {
     title: 'Industry Readiness Program',
     eyebrow: 'For emerging talent',
-    description: 'A structured program focused on practical engineering habits, workplace workflows, testing discipline, communication, and project delivery readiness.',
-    points: ['Project-based learning', 'Testing and deployment basics', 'Professional delivery habits'],
+    description: 'A structured program focused on practical engineering habits, workplace workflows, communication, and project delivery readiness.',
+    points: ['Project-based learning', 'Delivery workflow basics', 'Professional delivery habits'],
     accent: 'from-n-blue/22 to-[#7C5CFF]/18',
   },
   {

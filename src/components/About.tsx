@@ -1,15 +1,15 @@
 const cards = [
   {
     label: 'Our Mission',
-    text: 'To empower businesses through unwavering trust, consistent reliability, and uncompromising quality.',
+    text: 'To help ambitious teams turn product ideas, workflows, and business goals into dependable software systems.',
   },
   {
-    label: 'Who We Serve',
-    text: 'Businesses of every scale and individuals with ambition. The same quality standard applies to every engagement.',
+    label: 'Product Mindset',
+    text: 'We shape architecture, workflows, and implementation around the way your product needs to work in the real world.',
   },
   {
     label: 'Our Commitment',
-    text: 'Every line of code, recommendation, and deliverable is held to a standard that reflects your trust in us.',
+    text: 'Every build decision is made for clarity, maintainability, performance, and long-term business value.',
   },
 ]
 
@@ -25,10 +25,10 @@ export default function About() {
             className="font-display font-extrabold text-n-dark leading-[1.1] m-0 mb-5"
             style={{ fontSize: 'clamp(2rem, 3.5vw, 2.75rem)', letterSpacing: '-.02em' }}
           >
-            Rooted in Bhubaneswar.<br />Built for Impact.
+            Rooted in Value.<br />Built for Impact.
           </h2>
           <p className="text-[1.0625rem] text-n-slate leading-[1.7] m-0">
-            Founded on the belief that great technology is built on trust, Novion Technologies serves businesses and individuals alike from the heart of Odisha's growing IT landscape.
+            Novion Technologies partners with growing teams to design, build, and improve digital products that are practical, scalable, and ready for real users.
           </p>
         </div>
 

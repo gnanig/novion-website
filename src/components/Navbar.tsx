@@ -58,7 +58,7 @@ export default function Navbar() {
       }`}
       style={{
         width: 'calc(100vw - 2rem)',
-        maxWidth: '1180px',
+        maxWidth: '1216px',
         background: scrolled
           ? 'radial-gradient(circle at 9% 0%, rgba(0,161,240,0.15), transparent 30%), radial-gradient(circle at 92% 0%, rgba(155,228,255,0.18), transparent 34%), linear-gradient(90deg, rgba(250,254,255,0.72), rgba(238,249,254,0.64) 46%, rgba(250,254,255,0.72))'
           : 'radial-gradient(circle at 9% 0%, rgba(0,161,240,0.13), transparent 32%), radial-gradient(circle at 92% 0%, rgba(155,228,255,0.17), transparent 36%), linear-gradient(90deg, rgba(250,254,255,0.66), rgba(235,248,254,0.58) 46%, rgba(250,254,255,0.66))',

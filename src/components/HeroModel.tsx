@@ -205,7 +205,6 @@ export default function HeroModel() {
   return (
     <div className="hero-model-shell">
       <div className="hero-model-wrap" ref={hostRef} aria-label="Interactive 3D computer model" />
-      <div className="model-control-chip" aria-hidden="true">Drag / scroll to explore</div>
     </div>
   )
 }

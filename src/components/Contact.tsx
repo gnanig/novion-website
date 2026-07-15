@@ -94,8 +94,8 @@ export default function Contact() {
                   </svg>
                 </div>
                 <div>
-                  <p className="text-[0.72rem] font-bold tracking-[.08em] uppercase text-[#7895A8] m-0 mb-0.5">Location</p>
-                  <p className="text-[0.9rem] font-semibold text-n-dark m-0">11th Floor, O-HUB, SEZ, Bhubaneswar, India, 751024</p>
+                  <p className="text-[0.72rem] font-bold tracking-[.08em] uppercase text-[#7895A8] m-0 mb-0.5">Delivery Model</p>
+                  <p className="text-[0.9rem] font-semibold text-n-dark m-0">Remote-first collaboration with project support tailored to your team.</p>
                 </div>
               </div>
 
@@ -189,9 +189,11 @@ export default function Contact() {
                       className={`${fieldClass} cursor-pointer appearance-none pr-12`}
                     >
                       <option value="">Select a service...</option>
-                      <option value="software">Software Solutions</option>
+                      <option value="software">Product Engineering</option>
+                      <option value="ai-ml">AI/ML Solutions</option>
+                      <option value="cloud-devops">Cloud & DevOps</option>
+                      <option value="consulting">Technology Consulting</option>
                       <option value="testing">Testing Services</option>
-                      <option value="consulting">Consulting</option>
                       <option value="other">Other / Not Sure</option>
                     </select>
                     <ChevronDown

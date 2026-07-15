@@ -12,9 +12,11 @@ const navLinks = [
 ]
 
 const serviceLinks = [
-  'Software Solutions',
-  'Testing Services',
+  'Product Engineering',
+  'AI/ML Solutions',
+  'Cloud & DevOps',
   'Consulting',
+  'Testing Services',
 ]
 
 const linkClass = 'text-sm no-underline text-[#C8D8E2] transition-colors duration-200 hover:text-white'
@@ -41,10 +43,10 @@ export default function Footer() {
               />
             )}
             <p className="text-sm leading-[1.7] max-w-[260px] m-0 mb-3 text-[#C8D8E2]">
-              Engineering Trust. Delivering Quality. Your technology partner in Bhubaneswar, Odisha.
+              Building modern software, AI-ready products, and scalable digital systems for ambitious teams.
             </p>
             <p className="text-[0.72rem] italic m-0 text-white/45">
-              Trust | Reliability | Quality
+              Engineering | Automation | Scale
             </p>
           </div>
 
@@ -86,7 +88,7 @@ export default function Footer() {
             Copyright 2025 Novion Technologies. All rights reserved.
           </p>
           <p className="text-[0.78rem] m-0 text-white/45">
-            Crafted in <span className="text-n-blue">Bhubaneswar, Odisha</span>
+            Built for <span className="text-n-blue">modern digital delivery</span>
           </p>
         </div>
       </div>

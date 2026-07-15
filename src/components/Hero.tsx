@@ -31,7 +31,7 @@ export default function Hero() {
             <div className="ha1 inline-flex items-center gap-[9px] px-4 py-[7px] rounded-full border border-white/25 bg-white/10 shadow-[0_10px_30px_rgba(0,0,0,.12)] mb-5">
               <span aria-hidden="true" className="pulse-dot w-[7px] h-[7px] rounded-full bg-n-blue flex-shrink-0" />
               <span className="text-[0.78rem] font-semibold text-white/80 tracking-[0.03em]">
-                Software | Testing | Consulting
+                Engineering | AI | Consulting
               </span>
             </div>
 
@@ -44,11 +44,11 @@ export default function Hero() {
             </h1>
 
             <p className="ha3 text-[0.72rem] font-semibold tracking-[.2em] uppercase text-[#9BE4FF] m-0 mb-[16px]">
-              Trust |  Reliability | Quality
+              Trust | Reliability | Quality
             </p>
 
             <p className="ha4 text-[1rem] text-white/75 leading-[1.62] max-w-[540px] m-0 mb-7">
-              Novion Technologies is your end-to-end technology partner, from precision software development and rigorous testing to strategic consulting that delivers real results.
+              Novion Technologies designs modern web platforms, intelligent automation, and scalable digital products, backed by consulting and quality engineering when your product needs production confidence.
             </p>
 
             <div className="ha5 hero-actions flex flex-row flex-nowrap gap-2 sm:gap-[14px] items-center">
