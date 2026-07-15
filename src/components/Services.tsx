@@ -194,10 +194,11 @@ export default function Services() {
               className="service-entry-parent group"
             >
               <span className="service-3d-card">
+                <span className="service-3d-title">Explore Services</span>
                 <span className="service-3d-content">
-                  <span className="service-3d-title">Explore services</span>
                   <span className="service-3d-copy">
-                    Product engineering, AI/ML, cloud delivery, consulting, and testing support in one focused explorer.
+                    Move through our core capabilities in one focused explorer: product engineering, AI/ML, cloud delivery,
+                    consulting, and testing support shaped for reliable launches.
                   </span>
                   <button
                     type="button"

@@ -475,6 +475,9 @@ body,
 }
 
 .service-3d-card {
+  --service-card-gap: 20px;
+  --service-card-lower-gap: 8px;
+  --service-logo-size: 66px;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -518,8 +521,9 @@ body,
   display: flex;
   flex-direction: column;
   gap: 12px;
-  min-height: 216px;
-  padding: 72px 24px 24px;
+  height: calc(100% - var(--service-logo-size) - var(--service-card-gap) - var(--service-card-lower-gap));
+  min-height: 0;
+  padding: 30px 24px 24px;
   border-radius: 20px;
   transform-style: preserve-3d;
   background:
@@ -539,30 +543,36 @@ body,
 }
 
 .service-3d-title {
-  display: block;
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: var(--service-card-gap);
+  left: 28px;
+  height: var(--service-logo-size);
+  max-width: calc(100% - 132px);
   color: #fff;
   font-size: 1.55rem;
-  line-height: 1.08;
+  line-height: 1.04;
   font-weight: 900;
   letter-spacing: 0;
-  transform: translate3d(0, 0, 50px);
+  transform: translate3d(0, 0, 60px);
   transition: transform .5s ease-in-out;
   cursor: default;
   user-select: none;
 }
 
 .service-entry-parent:hover .service-3d-title {
-  transform: translate3d(0, 0, 68px);
+  transform: translate3d(0, 0, 78px);
 }
 
 .service-entry-parent:hover .service-3d-title:hover {
-  transform: translate3d(0, 0, 84px);
+  transform: translate3d(0, 0, 92px);
 }
 
 .service-3d-copy {
   display: block;
   color: rgba(232,244,250,.82);
-  font-size: .84rem;
+  font-size: .88rem;
   font-weight: 650;
   line-height: 1.55;
   transform: translate3d(0, 0, 32px);
@@ -618,10 +628,10 @@ body,
 
 .service-3d-badge {
   position: absolute;
-  top: 20px;
-  right: 20px;
-  width: 66px;
-  height: 66px;
+  top: var(--service-card-gap);
+  right: var(--service-card-gap);
+  width: var(--service-logo-size);
+  height: var(--service-logo-size);
   display: flex;
   flex-direction: column;
   align-items: center;
