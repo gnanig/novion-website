@@ -43,10 +43,10 @@ export default function HeroWave() {
     const particles = new THREE.Points(
       pointsGeometry,
       new THREE.PointsMaterial({
-        color: '#72D8FF',
-        size: 0.034,
+        color: '#8EE5FF',
+        size: 0.042,
         transparent: true,
-        opacity: 0.96,
+        opacity: 1,
         sizeAttenuation: true,
       }),
     )
@@ -54,9 +54,9 @@ export default function HeroWave() {
     const lines = new THREE.LineSegments(
       lineGeometry,
       new THREE.LineBasicMaterial({
-        color: '#00A1F0',
+        color: '#23C2FF',
         transparent: true,
-        opacity: 0.24,
+        opacity: 0.46,
       }),
     )
 

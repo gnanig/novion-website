@@ -13,11 +13,13 @@ function createLogoTexture(onReady: (texture: THREE.CanvasTexture) => void) {
   image.crossOrigin = 'anonymous'
   image.onload = () => {
     const canvas = document.createElement('canvas')
-    canvas.width = 1024
-    canvas.height = 640
+    canvas.width = 2048
+    canvas.height = 1280
 
     const ctx = canvas.getContext('2d')
     if (!ctx) return
+    ctx.imageSmoothingEnabled = true
+    ctx.imageSmoothingQuality = 'high'
 
     ctx.fillStyle = screenTint
     ctx.fillRect(0, 0, canvas.width, canvas.height)
@@ -62,11 +64,35 @@ function createLogoTexture(onReady: (texture: THREE.CanvasTexture) => void) {
     const texture = new THREE.CanvasTexture(canvas)
     texture.colorSpace = THREE.SRGBColorSpace
     texture.flipY = false
-    texture.anisotropy = 8
+    texture.anisotropy = 16
+    texture.magFilter = THREE.LinearFilter
+    texture.minFilter = THREE.LinearMipmapLinearFilter
+    texture.generateMipmaps = true
     texture.needsUpdate = true
     onReady(texture)
   }
   image.src = logoUrl
+}
+
+function makeMaterialOpaque(material: THREE.Material | THREE.Material[]) {
+  const materials = Array.isArray(material) ? material : [material]
+
+  materials.forEach((item) => {
+    item.transparent = false
+    item.depthWrite = true
+    item.alphaTest = 0
+
+    if ('opacity' in item) {
+      ;(item as THREE.Material & { opacity: number }).opacity = 1
+    }
+
+    if ('map' in item && item.map instanceof THREE.Texture) {
+      item.map.anisotropy = Math.max(item.map.anisotropy, 8)
+      item.map.needsUpdate = true
+    }
+
+    item.needsUpdate = true
+  })
 }
 
 export default function HeroModel() {
@@ -80,11 +106,17 @@ export default function HeroModel() {
     const camera = new THREE.PerspectiveCamera(34, 1, 0.1, 100)
     camera.position.set(0.15, 1.15, 5.15)
 
-    const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true, preserveDrawingBuffer: true })
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
+    const renderer = new THREE.WebGLRenderer({
+      alpha: true,
+      antialias: true,
+      precision: 'highp',
+      powerPreference: 'high-performance',
+      preserveDrawingBuffer: true,
+    })
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 3))
     renderer.outputColorSpace = THREE.SRGBColorSpace
     renderer.toneMapping = THREE.ACESFilmicToneMapping
-    renderer.toneMappingExposure = 1.05
+    renderer.toneMappingExposure = 1.18
     host.appendChild(renderer.domElement)
 
     const group = new THREE.Group()
@@ -121,6 +153,8 @@ export default function HeroModel() {
 
     const screenMaterial = new THREE.MeshBasicMaterial({
       color: '#ffffff',
+      opacity: 1,
+      transparent: false,
       side: THREE.DoubleSide,
     })
 
@@ -143,6 +177,7 @@ export default function HeroModel() {
 
         child.castShadow = true
         child.receiveShadow = true
+        makeMaterialOpaque(child.material)
 
         if (/monitor-screen|screen|plane/i.test(child.name) || /screen|plane/i.test(child.geometry.name)) {
           child.material = screenMaterial

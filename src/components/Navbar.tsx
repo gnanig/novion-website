@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 const navLinks = [
   { href: '#about', label: 'About Us' },
@@ -12,7 +12,9 @@ const navLinks = [
 const sectionTopLinks = new Set(['#home', '#about', '#features', '#services', '#contact'])
 
 export default function Navbar() {
+  const isScrollingRef = useRef(false)
   const [scrolled, setScrolled] = useState(false)
+  const [isVisible, setIsVisible] = useState(true)
   const [menuOpen, setMenuOpen] = useState(false)
   const [logoError, setLogoError] = useState(false)
 
@@ -21,6 +23,48 @@ export default function Navbar() {
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
+
+  useEffect(() => {
+    if (menuOpen) {
+      setIsVisible(true)
+      return undefined
+    }
+
+    let hideTimer = window.setTimeout(() => setIsVisible(false), 1500)
+    let scrollStopTimer = 0
+
+    const scheduleHide = () => {
+      window.clearTimeout(hideTimer)
+      hideTimer = window.setTimeout(() => setIsVisible(false), 1500)
+    }
+
+    const showNavbar = () => {
+      if (isScrollingRef.current) return
+      setIsVisible(true)
+      scheduleHide()
+    }
+
+    const hideWhileScrolling = () => {
+      isScrollingRef.current = true
+      setIsVisible(false)
+      window.clearTimeout(hideTimer)
+      window.clearTimeout(scrollStopTimer)
+      scrollStopTimer = window.setTimeout(() => {
+        isScrollingRef.current = false
+      }, 180)
+    }
+
+    window.addEventListener('pointermove', showNavbar, { passive: true })
+    window.addEventListener('scroll', hideWhileScrolling, { passive: true })
+
+    return () => {
+      window.clearTimeout(hideTimer)
+      window.clearTimeout(scrollStopTimer)
+      window.removeEventListener('pointermove', showNavbar)
+      window.removeEventListener('scroll', hideWhileScrolling)
+      isScrollingRef.current = false
+    }
+  }, [menuOpen])
 
   const scrollToSection = (href: string, event: React.MouseEvent<HTMLAnchorElement>) => {
     if (!href.startsWith('#')) return
@@ -51,25 +95,9 @@ export default function Navbar() {
     <nav
       role="navigation"
       aria-label="Main navigation"
-      className={`fixed left-1/2 z-50 -translate-x-1/2 transition-all duration-300 ${
-        scrolled
-          ? 'top-[10px] py-2 rounded-2xl border border-white/75 shadow-[0_18px_52px_rgba(0,42,78,0.12)]'
-          : 'top-[14px] py-2 rounded-2xl border border-white/70 shadow-[0_16px_48px_rgba(0,42,78,0.1)]'
-      }`}
-      style={{
-        width: 'calc(100vw - 2rem)',
-        maxWidth: '1216px',
-        background: scrolled
-          ? 'radial-gradient(circle at 9% 0%, rgba(0,161,240,0.15), transparent 30%), radial-gradient(circle at 92% 0%, rgba(155,228,255,0.18), transparent 34%), linear-gradient(90deg, rgba(250,254,255,0.72), rgba(238,249,254,0.64) 46%, rgba(250,254,255,0.72))'
-          : 'radial-gradient(circle at 9% 0%, rgba(0,161,240,0.13), transparent 32%), radial-gradient(circle at 92% 0%, rgba(155,228,255,0.17), transparent 36%), linear-gradient(90deg, rgba(250,254,255,0.66), rgba(235,248,254,0.58) 46%, rgba(250,254,255,0.66))',
-        backdropFilter: 'blur(34px) saturate(1.35) contrast(1.08) brightness(1.08)',
-        WebkitBackdropFilter: 'blur(34px) saturate(1.35) contrast(1.08) brightness(1.08)',
-        boxShadow: scrolled
-          ? '0 20px 58px rgba(0,42,78,0.14), 0 0 0 1px rgba(0,161,240,0.1), inset 0 1px 0 rgba(255,255,255,0.92), inset 0 -16px 38px rgba(0,161,240,0.05)'
-          : '0 18px 54px rgba(0,42,78,0.12), 0 0 0 1px rgba(0,161,240,0.09), inset 0 1px 0 rgba(255,255,255,0.9), inset 0 -16px 38px rgba(0,161,240,0.05)',
-      }}
+      className={`site-navbar ${scrolled ? 'site-navbar-scrolled' : ''} ${isVisible || menuOpen ? 'site-navbar-visible' : 'site-navbar-hidden'} ${menuOpen ? 'site-navbar-menu-open' : ''}`}
     >
-      <div className="mx-auto px-5 sm:px-6 flex items-center justify-between">
+      <div className="site-navbar-content mx-auto px-5 sm:px-6 flex items-center justify-between">
         <a
           href="#home"
           aria-label="Novion Technologies home"

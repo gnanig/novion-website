@@ -78,7 +78,7 @@ export default function Footer() {
               <p className="text-[0.72rem] font-bold tracking-[.12em] uppercase m-0 mb-[14px] text-[#9BE4FF]">
                 Social
               </p>
-              <SocialLinks variant="footer" />
+              <SocialLinks />
             </div>
           </div>
         </div>

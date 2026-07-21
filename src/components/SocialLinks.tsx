@@ -14,13 +14,9 @@ const socialLinks = [
   },
 ] satisfies Array<{ label: string; href: string; Icon: IconType }>
 
-interface SocialLinksProps {
-  variant?: 'contact' | 'footer'
-}
-
-export default function SocialLinks({ variant = 'contact' }: SocialLinksProps) {
+export default function SocialLinks() {
   return (
-    <div className={`social-links social-links-${variant}`}>
+    <div className="social-links social-links-footer">
       {socialLinks.map(({ href, Icon, label }) => (
         <a
           key={label}
